@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloomoon | Welcome</title>
+  <link rel="stylesheet" href="landing.css"/>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="landing.js"></script>
+</head>
+<body>
+
+  <div class="landing-container">
+    <h1 id="bloomoon-logo">BLOOMOON</h1>
+
+    <div class="tv-container">
+      <img src="images/bloomoon-tv.png" alt="Bloomoon TV" class="tv-image">
+    </div>
+
+    <button id="signInBtn">Sign-In</button>
+  </div>
+
+  <!-- POP-UP MODAL -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+
+      <div id="formContainer">
+        <h2 id="formTitle">Sign In</h2>
+
+        <form id="signInForm">
+          <label>Username</label>
+          <input type="text" id="username" required>
+
+          <label>Password</label>
+          <input type="password" id="password" required>
+
+          <button type="submit" class="form-btn">Log In</button>
+        </form>
+
+        <p class="toggle-text">Don’t have an account? <a href="#" id="toggleForm">Create one</a></p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+ 
