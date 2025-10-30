@@ -1,0 +1,114 @@
+.watchlist-header {
+  margin-top: 30px;
+}
+
+#page-title {
+  color: #8ba15c;
+  font-size: 2.2em;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  background-color: #f7ece3;
+  padding: 15px;
+  border-radius: 20px;
+  display: inline-block;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar input, .search-bar select, .search-bar button {
+  margin: 5px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+
+.search-bar button {
+  background-color: #c4d69c;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-bar button:hover {
+  background-color: #a7b67a;
+}
+
+.results-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.result-card {
+  background-color: #fefaf6;
+  border: 2px solid #d9cfc4;
+  border-radius: 20px;
+  width: 180px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.result-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.result-card button {
+  margin-top: 10px;
+  background-color: #c4d69c;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.result-card button:hover {
+  background-color: #a7b67a;
+}
+
+.lists-container {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.list {
+  width: 45%;
+  background-color: #f7ece3;
+  border-radius: 20px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.list h2 {
+  color: #8ba15c;
+}
+
+.list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.list li {
+  background-color: #fff;
+  border-radius: 15px;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+footer {
+  background-color: #a7e0e2;
+  color: white;
+  padding: 15px;
+  margin-top: 40px;
+}

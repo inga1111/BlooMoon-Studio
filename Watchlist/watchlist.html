@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloomoon </title>
+  <link rel="stylesheet" href="watchlist.css" />
+  <link rel="stylesheet" href="../main.css" /> 
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="watchlist.js"></script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">🌙 Bloomoon Studio</div>
+    <ul>
+        <li><a href="../Library/library.html">Library</a></li>
+        <li><a href="../Diary/diary.html">Diary</a></li>
+        <li><a href="watchlist.html" class="active">Watchlists</a></li>
+        <li><a href="../Profile/profile.html">Profile</a></li>
+        <li><a href="../About/about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="watchlist-header">
+      <h1 id="page-title">My Watchlists</h1>
+      <section class="search-bar">
+        <label for="searchType">Search Type:</label>
+        <select id="searchType">
+          <option value="bloomoon">Bloomoon Originals</option>
+          <option value="global">Global (Anime/Animation)</option>
+        </select>
+
+        <input type="text" id="searchInput" placeholder="Search for an animation...">
+        <button id="searchBtn">Search</button>
+      </section>
+    </section>
+
+    <section id="searchResults" class="results-section"></section>
+
+    <section class="lists-container">
+      <article class="list">
+        <h2>🌙 Bloomoon Watchlist</h2>
+        <ul id="bloomoonList"></ul>
+      </article>
+
+      <article class="list">
+        <h2>🌍 Global Watchlist</h2>
+        <ul id="globalList"></ul>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>Follow Bloomoon</p>
+    <a href="https://www.instagram.com" target="_blank">Instagram</a> |
+    <a href="https://www.youtube.com" target="_blank">YouTube</a>
+  </footer>
+</body>
+</html>
+
+
