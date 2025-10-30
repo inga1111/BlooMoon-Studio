@@ -5,18 +5,24 @@ body {
   padding: 0;
 }
 
+.logo {
+    font-size: 1.4rem;
+    padding: 10px 10px;
+}
+
 nav {
   background-color: #a7e0e2;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 10px 40px;
+  text-align: center;
+  padding: 5px 20px;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 60px;
+  font-size: 1.2rem;
 }
 
 nav a {
@@ -43,6 +49,7 @@ nav a.active {
   border-radius: 20px;
   cursor: pointer;
   transition: 0.3s;
+  font-size: 1rem;
 }
 
 #logBtn:hover {
@@ -102,8 +109,8 @@ nav a.active {
 }
 
 .entry {
-  background: #fff;
-  border-radius: 12px;
+  background: #f3c2d8;
+  border-radius: 15px;
   padding: 20px;
   margin-bottom: 20px;
   border-left: 5px solid #a7e0e2;
@@ -111,9 +118,25 @@ nav a.active {
 
 .entry h3 {
   margin-top: 0;
-  color: #ff6fb1;
+  color: #fc5da4;
 }
 
 .entry p {
   margin: 5px 0;
+}
+
+/* Star rating styling */
+.star {
+  font-size: 1.5rem;
+  color: #ccc;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.star.filled {
+  color: rgb(255, 233, 110);
+  text-shadow: 0 0 8px rgb(219, 192, 37);
+}
+
+.entry:hover .star.filled {
+  transform: scale(1.1);
 }

@@ -10,11 +10,12 @@ body {
 }
 
 #bloomoon-logo {
-  font-size: 3rem;
-  color: #6A8DFF;
+  font-size: 10rem;
+  color: #65bbca;
   letter-spacing: 4px;
-  margin-bottom: 1rem;
+  margin-bottom: 5rem;
   text-align: center;
+  font-style: italic;
 }
 
 .tv-image {
@@ -30,9 +31,11 @@ body {
   border-radius: 25px;
   color: white;
   cursor: pointer;
-  margin-top: 1.5rem;
+  margin: 1.5rem auto 0 auto; /* ⬅️ centers horizontally */
+  display: block; /* ⬅️ ensures margin:auto works */
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
+
 
 #signInBtn:hover {
   transform: scale(1.1);
