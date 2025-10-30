@@ -29,3 +29,10 @@ nav a.active {
   color: #ff6fb1;
   font-weight: bold;
 }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff8ef;
+  margin: 0;
+  padding: 0;
+}
