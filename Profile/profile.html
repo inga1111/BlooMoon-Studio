@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bloomoon Diary</title>
-  <link rel="stylesheet" href="diary.css" />
+  <title>Bloomoon | Profile</title>
+  <link rel="stylesheet" href="profile.css">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="profile.js"></script>
   <link rel="stylesheet" href="../main.css" /> 
 </head>
 <body>
@@ -19,3 +21,48 @@
         <li><a href="../About/about.html">About</a></li>
     </ul>
   </nav>
+
+  <main class="profile-container">
+    <section class="user-info">
+      <div class="profile-pic-container">
+        <img id="profile-pic" src="../images/default-avatar.png" alt="User avatar">
+        <input type="file" id="upload-pic" accept="image/*">
+      </div>
+      <h2 id="username">user01</h2>
+
+      <div class="follow-buttons">
+        <button id="following-btn">following</button>
+        <button id="followers-btn">followers</button>
+      </div>
+    </section>
+
+    <section class="follow-lists">
+      <div id="following-list" class="hidden">
+        <h3>Following</h3>
+        <ul id="following-users"></ul>
+      </div>
+
+      <div id="followers-list" class="hidden">
+        <h3>Followers</h3>
+        <ul id="followers-users"></ul>
+      </div>
+    </section>
+
+    <section class="favorites">
+      <h3>Favorite Global Animations</h3>
+      <div class="film-grid" id="film-grid">
+        <!-- Populated by API -->
+      </div>
+    </section>
+
+    <section class="bloomoon-favorite">
+      <h3>Your Favorite Bloomoon Work</h3>
+      <textarea id="fav-bloomoon" placeholder="Write about your favorite Bloomoon animation here..."></textarea>
+    </section>
+
+    <button id="logout-btn" class="logout">Log Out</button>
+  </main>
+
+
+  </body>
+</html>

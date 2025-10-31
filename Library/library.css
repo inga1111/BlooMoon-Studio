@@ -10,17 +10,6 @@ header {
   padding: 10px;
 }
 
-nav a {
-  color: #333;
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: 500;
-}
-
-nav a.active {
-  color: #e98ab2;
-  font-weight: bold;
-}
 
 .library-header {
   text-align: center;
