@@ -86,21 +86,26 @@ document.addEventListener("DOMContentLoaded", () => {
           <button type="submit" class="form-btn">Log In</button>
         `;
       }
-    } else {
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
+  } else {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
 
-      const storedUser = JSON.parse(localStorage.getItem("bloomoonUser"));
+  const storedUser = JSON.parse(localStorage.getItem("bloomoonUser"));
 
-      if (storedUser && storedUser.username === username && storedUser.password === password) {
-        alert(`Welcome back, ${username}! 🌙`);
-        // ✅ Redirect user to library.html after successful login
-        window.location.href = "Library/library.html";
-      } else {
-        alert("Incorrect username or password.");
-      }
-    }
-  });
+  if (storedUser && storedUser.username === username && storedUser.password === password) {
+    alert(`Welcome back, ${username}! 🌙`);
+
+    // 🌸 Save the logged-in username so we can use it in library.html
+    localStorage.setItem("loggedInUser", username);
+
+    // ✅ Redirect user to library.html after successful login
+    window.location.href = "Library/library.html";
+  } else {
+    alert("Incorrect username or password.");
+  }
+}
+});
+
 
   // 🌙 Small GSAP animation for the "BLOOMOON" logo
   gsap.from("#bloomoon-logo", {

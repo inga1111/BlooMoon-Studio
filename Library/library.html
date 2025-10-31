@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bloomoon Diary</title>
-  <link rel="stylesheet" href="diary.css" />
+  <title>Bloomoon | Library</title>
+  <link rel="stylesheet" href="library.css" />
+  <script defer src="library.js"></script>
   <link rel="stylesheet" href="../main.css" /> 
 </head>
 <body>
@@ -20,5 +21,78 @@
     </ul>
   </nav>
 
+  <main>
+    <section class="library-header">
+      <h2 id="welcome-text">Welcome back <span id="username">User01</span>!</h2>
+      <p>Browse our Bloomoon originals.</p>
+    </section>
 
+    <section class="film-gallery">
+      <article class="film-card">
+       <figure>
+         <a href="https://www.youtube.com/channel/UC47qbmpTIuN2vePS-Talhfw" target="_blank">
+          <img src="../images/perfect-sorrow.jpg" 
+           alt="Perfect Sorrow poster"
+           data-title="Perfect Sorrow"
+           data-duration="1h 45m"
+           data-release="12 June 2025"
+           data-writer="A. Bloom"
+           data-director="S. Luna"
+           data-description="A 25 year old woman is torn when she must choose between love and destiny."
+           class="film-poster" />
+      <figcaption class="watch-overlay">WATCH NOW</figcaption>
+    </a>
+  </figure>
 
+        <h3>Evergreen</h3>
+        <p><strong>Duration:</strong> 1h 20m</p>
+        <p><strong>Release date:</strong> 3 March 2026</p>
+        <p><strong>Written by:</strong> N. Vale</p>
+        <p><strong>Director:</strong> K. Mura</p>
+      </article>
+    </section>
+  </main>
+
+   <!-- NEW BUTTON -->
+    <button class="details-btn" onclick="viewDetails('perfect-sorrow')">View Details</button>
+  </article>
+</section>
+
+<article class="film-card">
+  <figure>
+    <a href="https://www.youtube.com/channel/UC47qbmpTIuN2vePS-Talhfw" target="_blank">
+      <img src="../images/perfect-sorrow.jpg" 
+           alt="Perfect Sorrow poster"
+           data-title="Perfect Sorrow"
+           data-duration="1h 45m"
+           data-release="12 June 2025"
+           data-writer="A. Bloom"
+           data-director="S. Luna"
+           data-description="A 25 year old woman is torn when she must choose between love and destiny."
+           class="film-poster" />
+      <figcaption class="watch-overlay">WATCH NOW</figcaption>
+    </a>
+  </figure>
+
+        <h3>Evergreen</h3>
+        <p><strong>Duration:</strong> 1h 20m</p>
+        <p><strong>Release date:</strong> 3 March 2026</p>
+        <p><strong>Written by:</strong> N. Vale</p>
+        <p><strong>Director:</strong> K. Mura</p>
+      </article>
+    </section>
+  </main>
+
+   <!-- NEW BUTTON -->
+    <button class="details-btn" onclick="viewDetails('perfect-sorrow')">View Details</button>
+  </article>
+</section>
+
+  <footer>
+    <p>Follow us:</p>
+    <a href="https://instagram.com" target="_blank">Instagram</a> |
+    <a href="https://youtube.com" target="_blank">YouTube</a>
+  </footer>
+
+</body>
+</html>
