@@ -1,0 +1,88 @@
+.about-page {
+  background-color: #fff8ef;
+  color: #333;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.about-title {
+  font-size: 2.8rem;
+  color: #e07ea5;
+  margin-bottom: 0.5rem;
+}
+
+.about-subtitle {
+  color: #7bbfc1;
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+}
+
+/* Card Styling */
+.card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(231, 149, 175, 0.15);
+  margin: 2rem auto;
+  padding: 2rem;
+  max-width: 850px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(231, 149, 175, 0.25);
+}
+
+h2 {
+  color: #e07ea5;
+  margin-bottom: 1rem;
+}
+
+p {
+  line-height: 1.7;
+}
+
+.values ul {
+  list-style: none;
+  padding: 0;
+  line-height: 2;
+}
+
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.team-member img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease;
+}
+
+.team-member img:hover {
+  transform: scale(1.05);
+}
+
+.cta-btn {
+  display: inline-block;
+  background-color: #a7e0e2;
+  color: #333;
+  padding: 0.9rem 2.2rem;
+  border-radius: 2rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-btn:hover {
+  background-color: #e07ea5;
+  color: #fff;
+}
