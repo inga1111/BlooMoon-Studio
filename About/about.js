@@ -1,8 +1,8 @@
-// GSAP title animation
+ 
 gsap.from(".about-title", { opacity: 0, y: -40, duration: 1.3, ease: "power2.out" });
 gsap.from(".about-subtitle", { opacity: 0, y: -20, duration: 1.1, delay: 0.3, ease: "power2.out" });
 
-// Animate cards on scroll
+ 
 gsap.utils.toArray(".card").forEach((card, i) => {
   gsap.from(card, {
     scrollTrigger: {
@@ -17,7 +17,7 @@ gsap.utils.toArray(".card").forEach((card, i) => {
   });
 });
 
-// Load nav and footer
+ 
 fetch("../main.js")
   .then(() => {
     if (typeof loadNavBar === "function") loadNavBar();

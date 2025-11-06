@@ -1,82 +1,23 @@
-// 🌸 Animate welcome text using GSAP
 document.addEventListener("DOMContentLoaded", () => {
-  const welcomeText = document.getElementById("welcome-text");
-
-  if (welcomeText) {
-    gsap.from(welcomeText, {
-      duration: 1.2,
-      opacity: 0,
-      y: -30,
-      ease: "power2.out"
-    });
-
-    gsap.to("#welcome-text span", {
-      repeat: -1,
-      yoyo: true,
-      color: "#e98ab2",
-      duration: 2,
-      ease: "sine.inOut"
-    });
-  }
-
-  // 🌙 Fetch username from login
   const usernameSpan = document.getElementById("username");
   const storedUser = localStorage.getItem("loggedInUser");
-  if (storedUser && usernameSpan) {
-    usernameSpan.textContent = storedUser;
-  }
-});
 
-// 🌸 Handle film click and store data
-document.addEventListener("click", function (e) {
-  if (e.target.classList.contains("film-poster")) {
-    const filmData = {
-      title: e.target.dataset.title,
-      duration: e.target.dataset.duration,
-      release: e.target.dataset.release,
-      writer: e.target.dataset.writer,
-      director: e.target.dataset.director,
-      description: e.target.dataset.description,
-      link: e.target.dataset.link,
-      image: e.target.src,
-    };
-    localStorage.setItem("selectedFilm", JSON.stringify(filmData));
-    window.location.href = "library-details.html";
-  }
-});
+  if (storedUser) usernameSpan.textContent = storedUser;
 
-// 🌙 Populate film details page
-if (window.location.pathname.includes("library-details.html")) {
-  const film = JSON.parse(localStorage.getItem("selectedFilm"));
-  if (film) {
-    document.getElementById("detail-poster").src = film.image;
-    document.getElementById("detail-title").textContent = film.title;
-    document.getElementById("detail-duration").textContent = film.duration;
-    document.getElementById("detail-release").textContent = film.release;
-    document.getElementById("detail-writer").textContent = film.writer;
-    document.getElementById("detail-director").textContent = film.director;
-    document.getElementById("detail-description").textContent = film.description;
-    document.getElementById("watchLink").href = film.link;
-  }
+  // Animate welcome message
+  gsap.from("#welcome-text", { opacity: 0, y: -20, duration: 1.4, ease: "power2.out" });
+  gsap.to("#username", { color: "#e98ab2", repeat: -1, yoyo: true, duration: 2 });
 
-  document.getElementById("returnBtn").addEventListener("click", () => {
-    window.location.href = "library.html";
+  // Film details logic
+  document.querySelectorAll(".film-poster").forEach(poster => {
+    poster.addEventListener("click", () => {
+      const data = poster.dataset;
+      localStorage.setItem("selectedFilm", JSON.stringify(data));
+      window.location.href = "library-details.html";
+    });
   });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const storedUser = localStorage.getItem("loggedInUser");
-  const usernameSpan = document.getElementById("username");
-
-  if (storedUser && usernameSpan) {
-    usernameSpan.textContent = storedUser;
-  }
 });
 
-function viewDetails(filmId) {
-  // Store the selected film ID in localStorage
-  localStorage.setItem("selectedFilm", filmId);
-  
-  // Redirect to the details page
-  window.location.href = "library-details.html";
-}
+  gsap.timeline()
+    .from("nav", { y: -60, opacity: 0, duration: 1, ease: "power3.out" })
+    .from(".page-title", { opacity: 0, y: 30, duration: 1 }, "-=0.6");

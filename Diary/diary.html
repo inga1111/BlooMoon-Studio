@@ -5,32 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bloomoon Diary</title>
   <link rel="stylesheet" href="diary.css" />
-  <link rel="stylesheet" href="../main.css" /> 
+  <link rel="stylesheet" href="../main.css" />
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script defer src="diary.js"></script>
 </head>
+
 <body>
-  <!-- Navigation -->
-<nav>
-    <div class="logo">🌙 Bloomoon Studio</div>
-    <ul>
+  <header>
+    <nav>
+      <div class="logo">🌙 Bloomoon Studio</div>
+      <ul>
         <li><a href="../Library/library.html">Library</a></li>
         <li><a href="diary.html" class="active">Diary</a></li>
         <li><a href="../Watchlist/watchlist.html">Watchlists</a></li>
         <li><a href="../Profile/profile.html">Profile</a></li>
         <li><a href="../About/about.html">About</a></li>
-    </ul>
-  </nav>
+      </ul>
+    </nav>
+  </header>
 
-  <!-- Diary Entries -->
   <main>
-    <h1 class="page-title">Entries</h1>
-    <div id="diaryEntries" class="entries-container"></div>
-  </main>
 
+    
+    <header class="diary-header">
+      <h2 id="welcome-text">YOUR DIARY ENTRIES</h2>
+      <p>Here is where you can log all your reviews on all your watched films, whether from Bloomoon or any other Animations</p>
+    </header>
 
   <!-- Log Review Button -->
-  <div class="log-container">
+  <section class="log-container">
     <button id="logBtn">+ Log New Review</button>
-  </div>
+  </section>
 
   <!-- Popup Review Form -->
   <div id="reviewPopup" class="popup">
@@ -38,6 +46,7 @@
       <span id="closePopup" class="close">&times;</span>
       <h2>Log a New Review</h2>
       <form id="reviewForm">
+
         <label>Animation Title:</label>
         <input type="text" id="title" required />
 
@@ -52,8 +61,6 @@
     </div>
   </div>
 
-
-  <script src="diary.js"></script>
-
+</main>
 </body>
 </html>

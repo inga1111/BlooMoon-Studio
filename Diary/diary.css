@@ -3,8 +3,10 @@ body {
   background-color: #fff8ef;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
+/* Navigation */
 .logo {
     font-size: 1.4rem;
     padding: 10px 10px;
@@ -29,6 +31,11 @@ nav a {
   text-decoration: none;
   color: #333;
   font-weight: 500;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  opacity: 0.6;
 }
 
 nav a.active {
@@ -36,6 +43,15 @@ nav a.active {
   font-weight: bold;
 }
 
+.page-title {
+  text-align: center;
+  margin-top: 40px;
+  color: #e07ea5;
+  font-size: 2.3rem;
+  opacity: 0;
+}
+
+/* Log Review Button */
 .log-container {
   text-align: center;
   margin: 20px;
@@ -50,24 +66,25 @@ nav a.active {
   cursor: pointer;
   transition: 0.3s;
   font-size: 1rem;
+  transform: scale(1);
 }
 
 #logBtn:hover {
   background-color: #aabf56;
+  transform: scale(1.08);
 }
 
-/* Popup styling */
+/* Popup */
 .popup {
   display: none;
   position: fixed;
   z-index: 10;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
   background-color: rgba(0,0,0,0.6);
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(3px);
 }
 
 .popup-content {
@@ -76,6 +93,14 @@ nav a.active {
   padding: 30px;
   width: 400px;
   position: relative;
+  animation: fadeScaleUp 0.4s ease forwards;
+}
+
+
+
+@keyframes fadeScaleUp {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .close {
@@ -86,22 +111,6 @@ nav a.active {
   cursor: pointer;
 }
 
-#reviewForm input, #reviewForm textarea {
-  width: 100%;
-  margin-bottom: 15px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-
-#reviewForm button {
-  background-color: #ff6fb1;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
-  cursor: pointer;
-}
 
 .entries-container {
   margin: 40px auto;
@@ -114,22 +123,20 @@ nav a.active {
   padding: 20px;
   margin-bottom: 20px;
   border-left: 5px solid #a7e0e2;
+  opacity: 0;
+  transform: translateY(30px);
 }
 
-.entry h3 {
-  margin-top: 0;
-  color: #fc5da4;
+.entry:hover {
+  transform: translateY(-4px);
+  transition: 0.3s;
 }
 
-.entry p {
-  margin: 5px 0;
-}
 
-/* Star rating styling */
 .star {
   font-size: 1.5rem;
   color: #ccc;
-  transition: color 0.3s ease, transform 0.2s ease;
+  transition: 0.3s;
 }
 
 .star.filled {
@@ -137,6 +144,29 @@ nav a.active {
   text-shadow: 0 0 8px rgb(219, 192, 37);
 }
 
-.entry:hover .star.filled {
-  transform: scale(1.1);
+/* Delete Button */
+.deleteBtn {
+  margin-top: 10px;
+  background: #ff6fb1;
+  border: none;
+  color: white;
+  padding: 7px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.deleteBtn:hover {
+  background: #e74a9d;
+}
+
+/* Header */
+.diary-header {
+  text-align: center;
+  margin-top: 80px;
+  color: #4f8a8b;
+}
+
+.diary-header h2 {
+  font-size: 2rem;
 }
