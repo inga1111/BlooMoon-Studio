@@ -9,11 +9,18 @@ body {
 .library-header {
   text-align: center;
   margin-top: 40px;
-  color: #32c0c2;
+  color: #ff70a9;
 }
 
 .library-header h2 {
   font-size: 3rem;
+}
+
+.library-header p {
+  font-size: 2rem;
+  color: #8ba15c;
+  /* nudge the paragraph slightly upward to sit closer to the heading */
+  margin-top: -30px;
 }
 
 /* Film Gallery Grid */
@@ -21,8 +28,9 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
-  padding: 10px;
+  padding: 30px;
   justify-items: center;
+  margin-top: -30px;
 }
 
 /* Card */

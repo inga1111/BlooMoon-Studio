@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  background-color: #FFF3E6;
-  font-family: 'Poppins', sans-serif;
+  background-color: #f9f3ddf7;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,29 +11,35 @@ body {
 
 #bloomoon-logo {
   font-size: 10rem;
-  color: #65bbca;
+  color: #7adbea;
   letter-spacing: 4px;
-  margin-bottom: 5rem;
+  margin-bottom: 1rem;
+  margin-top: 2.8rem;
   text-align: center;
   font-style: italic;
+  text-shadow: 0 8px 20px rgba(137, 224, 239, 0.481);
 }
 
 .tv-image {
-  width: 250px;
-  height: auto;
+  height: 300px;
+  width: 400px;
+  transform: translateY(-30px);
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
 }
 
 #signInBtn {
-  background-color: #C5D86D;
+  background-color: #7adbea;
   border: none;
   padding: 0.8rem 1.5rem;
   font-size: 1rem;
   border-radius: 25px;
   color: white;
   cursor: pointer;
-  margin: 1.5rem auto 0 auto; 
-  display: block; 
+  display: block;
+  margin: 0.5rem auto 1rem;
   transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 8px 20px rgba(46, 195, 236, 0.522);
 }
 
 
@@ -54,7 +60,7 @@ body {
 }
 
 .modal-content {
-  background: #FFF;
+  background: #f1c4d8;
   padding: 2rem;
   border-radius: 15px;
   width: 320px;
@@ -80,7 +86,7 @@ input {
 
 .form-btn {
   background-color: #C5D86D;
-  color: white;
+  color: rgb(253, 246, 246);
   border: none;
   padding: 10px 20px;
   border-radius: 20px;
@@ -105,4 +111,10 @@ input {
 @keyframes popIn {
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
+}
+
+.tv-container{
+  display: flex;
+  justify-content: center;  
+  align-items: center;  
 }

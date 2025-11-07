@@ -10,21 +10,22 @@
   font-size: 2.8rem;
   color: #ff64a2;
   margin-bottom: 0.5rem;
+  text-shadow: #ba386c
 }
 
 .about-subtitle {
   color: #5eb6b9;
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-bottom: 3rem;
 }
 
 /* Card Styling */
 .card {
-  background: rgba(225, 253, 252, 0.8);
+  background: rgba(221, 246, 245, 0.8);
   backdrop-filter: blur(10px);
   border-radius: 60px;
   box-shadow: 0 8px 20px rgba(38, 188, 215, 0.522);
-  margin: 2rem auto;
+  margin: 3.2rem auto;
   padding: 2rem;
   max-width: 850px;
   text-align: center;
@@ -39,6 +40,8 @@
 h2 {
   color: #ff64a2;
   margin-bottom: 1rem;
+  font-size: 2rem;
+  text-shadow: #ba386c;
 }
 
 p {
@@ -64,9 +67,10 @@ p {
 .team-member img {
   width: 200px;
   height: 200px;
+  margin-bottom: 1rem;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgb(96, 175, 188);
   transition: transform 0.4s ease;
 }
 

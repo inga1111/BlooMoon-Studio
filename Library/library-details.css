@@ -1,3 +1,4 @@
+
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #fff8ef;
@@ -27,14 +28,14 @@ header {
 .poster-section img {
   width: 320px;
   border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 20px rgba(245, 32, 100, 0.15);
 }
 
 .info-section {
-  background-color: #ffffff;
+  background-color: #ffe6ee;
   border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  padding: 20px;
+  box-shadow: 0 8px 20px rgba(245, 32, 100, 0.15);
+  padding: 30px;
   max-width: 500px;
 }
 
@@ -59,13 +60,4 @@ header {
 .watch-btn:hover, .back-btn:hover {
   background-color: #ffb6c1;
   transform: scale(1.05);
-}
-
-footer {
-  text-align: center;
-  padding: 10px;
-  background-color: #a7e0e2;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
 }
