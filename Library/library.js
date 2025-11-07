@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Animate welcome message
   gsap.from("#welcome-text", { opacity: 0, y: -20, duration: 1.4, ease: "power2.out" });
-  gsap.to("#username", { color: "#e98ab2", repeat: -1, yoyo: true, duration: 2 });
+  gsap.to("#username", { color: "#ff67a6ff", repeat: -1, yoyo: true, duration: 2 });
 
   // Film details logic
   document.querySelectorAll(".film-poster").forEach(poster => {
