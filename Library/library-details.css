@@ -26,7 +26,8 @@ header {
 }
 
 .poster-section img {
-  width: 320px;
+  width: 200px;
+  height: 250px;
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(245, 32, 100, 0.15);
 }
