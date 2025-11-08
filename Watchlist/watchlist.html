@@ -3,19 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bloomoon </title>
+  <title>Bloomoon Watchlist</title>
+  <link rel="stylesheet" href="../main.css" />
   <link rel="stylesheet" href="watchlist.css" />
-  <link rel="stylesheet" href="../main.css" /> 
-  <script defer src="../main.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script defer src="watchlist.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
-  
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">🌙 Bloomoon Studio</div>
+    <ul>
+      <li><a href="../Library/library.html">Library</a></li>
+      <li><a href="../Diary/diary.html">Diary</a></li>
+      <li><a href="watchlist.html" class="active">Watchlists</a></li>
+      <li><a href="../Profile/profile.html">Profile</a></li>
+      <li><a href="../About/about.html">About</a></li>
+    </ul>
+  </nav>
 
   <main>
-
     <section class="watchlist-header">
       <h2 id="welcome-text">YOUR WATCHLIST</h2>
       <section class="search-bar">
@@ -34,19 +40,21 @@
 
     <section class="lists-container">
       <article class="list">
-        <h2> Bloomoon Watchlist</h2>
-        <ul id="bloomoonList"></ul>
+        <h2>Bloomoon Watchlist</h2>
+        <ul id="bloomoonList">
+          <li class="empty-message">Your Bloomoon watchlist is empty</li>
+        </ul>
       </article>
 
       <article class="list">
-        <h2> Global Watchlist</h2>
-        <ul id="globalList"></ul>
+        <h2>Global Watchlist</h2>
+        <ul id="globalList">
+          <li class="empty-message">Your Global watchlist is empty</li>
+        </ul>
       </article>
     </section>
   </main>
 
-
+  <script src="watchlist.js"></script>
 </body>
 </html>
-
-

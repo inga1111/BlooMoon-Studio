@@ -77,9 +77,26 @@
     const posters = document.querySelectorAll('.film-poster');
     posters.forEach(poster => {
       poster.addEventListener('click', () => {
-        const data = poster.dataset;
+        // include the actual image src so details page can show the correct poster
+        const data = Object.assign({}, poster.dataset, { src: poster.src });
         localStorage.setItem('selectedFilm', JSON.stringify(data));
         // Redirect to details using correct relative path from Library folder
+        window.location.href = 'library-details.html';
+      });
+    });
+
+    // Also ensure the "View Film Details" buttons store the right film before navigating
+    const viewBtns = document.querySelectorAll('.view-btn');
+    viewBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        // find the closest film-card and its poster
+        const card = btn.closest('.film-card');
+        const poster = card ? card.querySelector('.film-poster') : null;
+        if (poster) {
+          const data = Object.assign({}, poster.dataset, { src: poster.src });
+          localStorage.setItem('selectedFilm', JSON.stringify(data));
+        }
+        // navigate to details
         window.location.href = 'library-details.html';
       });
     });

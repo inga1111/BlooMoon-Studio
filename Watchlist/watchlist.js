@@ -1,78 +1,160 @@
-// Animate heading
+// Animation on page load
 document.addEventListener("DOMContentLoaded", () => {
-  gsap.from("#page-title", { opacity: 0, y: -30, duration: 1, ease: "bounce.out" });
+  // Animate the welcome text
+  gsap.from("#welcome-text", { 
+    opacity: 0, 
+    y: -20, 
+    duration: 1.4, 
+    ease: "power2.out" 
+  });
+  
+  // Animate navigation
+  gsap.timeline()
+    .from("nav", { y: -60, opacity: 0, duration: 1, ease: "power3.out" })
+    .from(".search-bar", { opacity: 0, y: 30, duration: 1 }, "-=0.6");
+  
+  // Load and render watchlists
+  renderLists();
 });
 
+// DOM elements
 const searchBtn = document.getElementById("searchBtn");
 const searchInput = document.getElementById("searchInput");
 const searchType = document.getElementById("searchType");
 const searchResults = document.getElementById("searchResults");
-
 const bloomoonList = document.getElementById("bloomoonList");
 const globalList = document.getElementById("globalList");
 
-// Load saved lists
+// Load saved lists from localStorage
 let bloomoonWatchlist = JSON.parse(localStorage.getItem("bloomoonWatchlist")) || [];
 let globalWatchlist = JSON.parse(localStorage.getItem("globalWatchlist")) || [];
 
-// Display saved lists
+// Render the watchlists
 function renderLists() {
-  bloomoonList.innerHTML = bloomoonWatchlist.map(item => `
-    <li><img src="${item.image}" alt="${item.title}" width="50"> ${item.title}</li>
-  `).join("");
+  // Render Bloomoon watchlist
+  if (bloomoonWatchlist.length > 0) {
+    bloomoonList.innerHTML = bloomoonWatchlist.map((item, index) => `
+      <li>
+        <div class="movie-info">
+          <img src="${item.image}" alt="${item.title}">
+          <span class="movie-title">${item.title}</span>
+        </div>
+        <button class="delete-btn" data-index="${index}" data-type="bloomoon">×</button>
+      </li>
+    `).join("");
+  } else {
+    bloomoonList.innerHTML = '<li class="empty-message">Your Bloomoon watchlist is empty</li>';
+  }
 
-  globalList.innerHTML = globalWatchlist.map(item => `
-    <li><img src="${item.image}" alt="${item.title}" width="50"> ${item.title}</li>
-  `).join("");
+  // Render Global watchlist
+  if (globalWatchlist.length > 0) {
+    globalList.innerHTML = globalWatchlist.map((item, index) => `
+      <li>
+        <div class="movie-info">
+          <img src="${item.image}" alt="${item.title}">
+          <span class="movie-title">${item.title}</span>
+        </div>
+        <button class="delete-btn" data-index="${index}" data-type="global">×</button>
+      </li>
+    `).join("");
+  } else {
+    globalList.innerHTML = '<li class="empty-message">Your Global watchlist is empty</li>';
+  }
+
+  // Add event listeners to delete buttons
+  document.querySelectorAll('.delete-btn').forEach(button => {
+    button.addEventListener('click', (e) => {
+      const index = parseInt(e.target.dataset.index);
+      const type = e.target.dataset.type;
+      
+      if (type === 'bloomoon') {
+        bloomoonWatchlist.splice(index, 1);
+        localStorage.setItem("bloomoonWatchlist", JSON.stringify(bloomoonWatchlist));
+      } else {
+        globalWatchlist.splice(index, 1);
+        localStorage.setItem("globalWatchlist", JSON.stringify(globalWatchlist));
+      }
+      
+      renderLists();
+    });
+  });
 }
 
-renderLists();
-
-// Handle search
+// Handle search functionality
 searchBtn.addEventListener("click", async () => {
   const query = searchInput.value.trim();
   const type = searchType.value;
   searchResults.innerHTML = "";
 
   if (!query) {
-    searchResults.innerHTML = "<p>Please enter a title to search.</p>";
+    searchResults.innerHTML = "<p class='empty-message'>Please enter a title to search.</p>";
     return;
   }
 
   if (type === "global") {
     // Jikan API for anime
-    const response = await fetch(`https://api.jikan.moe/v4/anime?q=${query}&limit=5`);
-    const data = await response.json();
+    try {
+      const response = await fetch(`https://api.jikan.moe/v4/anime?q=${query}&limit=5`);
+      const data = await response.json();
 
-    data.data.forEach(anime => {
-      const card = document.createElement("section");
-      card.classList.add("result-card");
-      card.innerHTML = `
-        <img src="${anime.images.jpg.image_url}" alt="${anime.title}">
-        <h3>${anime.title}</h3>
-        <button>Add to Global Watchlist</button>
-      `;
-      card.querySelector("button").addEventListener("click", () => {
-        globalWatchlist.push({ title: anime.title, image: anime.images.jpg.image_url });
-        localStorage.setItem("globalWatchlist", JSON.stringify(globalWatchlist));
-        renderLists();
-      });
-      searchResults.appendChild(card);
-    });
+      if (data.data && data.data.length > 0) {
+        data.data.forEach(anime => {
+          const card = document.createElement("div");
+          card.classList.add("result-card");
+          card.innerHTML = `
+            <img src="${anime.images.jpg.image_url}" alt="${anime.title}">
+            <h3>${anime.title}</h3>
+            <button>Add to Global Watchlist</button>
+          `;
+          card.querySelector("button").addEventListener("click", () => {
+            // Check if already in watchlist
+            const exists = globalWatchlist.some(item => item.title === anime.title);
+            if (!exists) {
+              globalWatchlist.push({ 
+                title: anime.title, 
+                image: anime.images.jpg.image_url 
+              });
+              localStorage.setItem("globalWatchlist", JSON.stringify(globalWatchlist));
+              renderLists();
+              
+              // Animate the addition
+              gsap.from(card, {
+                scale: 0.8,
+                duration: 0.5,
+                ease: "back.out(1.7)"
+              });
+            } else {
+              alert("This title is already in your Global Watchlist!");
+            }
+          });
+          searchResults.appendChild(card);
+        });
+      } else {
+        searchResults.innerHTML = "<p class='empty-message'>No results found.</p>";
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      searchResults.innerHTML = "<p class='empty-message'>Error fetching data. Please try again.</p>";
+    }
   } else {
     // Fake Bloomoon catalog
     const bloomoonData = [
-      { title: "Moonlit Melodies", image: "images/moonlit.png" },
-      { title: "Starfall Dreams", image: "images/starfall.png" },
-      { title: "Petal Parade", image: "images/petal.png" }
+      { title: "Moonlit Melodies", image: "https://via.placeholder.com/150x200/8ba15c/ffffff?text=Moonlit+Melodies" },
+      { title: "Starfall Dreams", image: "https://via.placeholder.com/150x200/4f8a8b/ffffff?text=Starfall+Dreams" },
+      { title: "Petal Parade", image: "https://via.placeholder.com/150x200/e98ab2/ffffff?text=Petal+Parade" },
+      { title: "Whispering Woods", image: "https://via.placeholder.com/150x200/c4d69c/ffffff?text=Whispering+Woods" },
+      { title: "Crystal Chronicles", image: "https://via.placeholder.com/150x200/a7b67a/ffffff?text=Crystal+Chronicles" }
     ];
 
-    const results = bloomoonData.filter(item => item.title.toLowerCase().includes(query.toLowerCase()));
+    const results = bloomoonData.filter(item => 
+      item.title.toLowerCase().includes(query.toLowerCase())
+    );
+    
     if (results.length === 0) {
-      searchResults.innerHTML = "<p>No Bloomoon titles found.</p>";
+      searchResults.innerHTML = "<p class='empty-message'>No Bloomoon titles found.</p>";
     } else {
       results.forEach(item => {
-        const card = document.createElement("section");
+        const card = document.createElement("div");
         card.classList.add("result-card");
         card.innerHTML = `
           <img src="${item.image}" alt="${item.title}">
@@ -80,9 +162,22 @@ searchBtn.addEventListener("click", async () => {
           <button>Add to Bloomoon Watchlist</button>
         `;
         card.querySelector("button").addEventListener("click", () => {
-          bloomoonWatchlist.push(item);
-          localStorage.setItem("bloomoonWatchlist", JSON.stringify(bloomoonWatchlist));
-          renderLists();
+          // Check if already in watchlist
+          const exists = bloomoonWatchlist.some(watchItem => watchItem.title === item.title);
+          if (!exists) {
+            bloomoonWatchlist.push(item);
+            localStorage.setItem("bloomoonWatchlist", JSON.stringify(bloomoonWatchlist));
+            renderLists();
+            
+            // Animate the addition
+            gsap.from(card, {
+              scale: 0.8,
+              duration: 0.5,
+              ease: "back.out(1.7)"
+            });
+          } else {
+            alert("This title is already in your Bloomoon Watchlist!");
+          }
         });
         searchResults.appendChild(card);
       });
@@ -90,17 +185,9 @@ searchBtn.addEventListener("click", async () => {
   }
 });
 
-  gsap.from("#welcome-text", { opacity: 0, y: -20, duration: 1.4, ease: "power2.out" });
-  gsap.to("#username", { color: "#e98ab2", repeat: -1, yoyo: true, duration: 2 });
-
-    gsap.timeline()
-    .from("nav", { y: -60, opacity: 0, duration: 1, ease: "power3.out" })
-    .from(".page-title", { opacity: 0, y: 30, duration: 1 }, "-=0.6");
-
-    // Delete
-  entry.querySelector('.delete-btn').addEventListener('click', () => {
-    let diary = JSON.parse(localStorage.getItem('bloomoonDiary')) || [];
-    diary.splice(index, 1);
-    localStorage.setItem('bloomoonDiary', JSON.stringify(diary));
-    entry.remove();
-  });
+// Allow pressing Enter to search
+searchInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    searchBtn.click();
+  }
+});
