@@ -53,46 +53,6 @@ nav {
   text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 1.5rem;
-  margin: 0;
-  padding: 0;
-}
-
-nav a {
-  text-decoration: none;
-  color: var(--text-color);
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  transition: var(--transition);
-  position: relative;
-  overflow: hidden;
-}
-
-nav a::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--secondary-color);
-  transition: var(--transition);
-}
-
-nav a:hover::before,
-nav a.active::before {
-  width: 100%;
-}
-
-nav a:hover,
-nav a.active {
-  color: var(--secondary-color);
-}
-
 /* Main content */
 main {
   padding: 2rem;

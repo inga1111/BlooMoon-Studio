@@ -26,6 +26,11 @@ body.loaded {
   --background-color: #fff8ef;
   --card-color: #fdf3e7;
   --text-color: #333;
+
+#add-fav-btn {
+  display: block;
+  margin: 12px auto;
+}
   --shadow-light: 2px 4px 8px rgba(28, 146, 157, 0.725);
   --shadow-medium: 2px 6px 12px rgba(30, 115, 130, 0.949);
   --border-radius: 1.5rem;
@@ -47,59 +52,9 @@ body {
   min-height: 100vh;
 }
 
-/* Navigation */
-nav {
-  background-color: var(--primary-color);
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid var(--primary-dark);
-  box-shadow: var(--shadow-light);
-}
-
 .logo {
   font-size: 1.5rem;
   font-weight: 700;
-}
-
-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 1.5rem;
-  margin: 0;
-  padding: 0;
-}
-
-nav a {
-  text-decoration: none;
-  color: var(--text-color);
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  transition: var(--transition);
-  position: relative;
-}
-
-nav a::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--secondary-color);
-  transition: var(--transition);
-}
-
-nav a:hover::before,
-nav a.active::before {
-  width: 100%;
-}
-
-nav a:hover,
-nav a.active {
-  color: var(--secondary-color);
 }
 
 
@@ -134,8 +89,8 @@ nav a.active {
 }
 
 .profile-pic-container img {
-  width: 130px;
-  height: 130px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   border: 5px solid var(--primary-color);
   object-fit: cover;
@@ -171,6 +126,11 @@ nav a.active {
   display: block;
   width: auto;
   min-width: 200px;
+}
+
+#log-review-btn {
+  margin-top: -30px;
+  margin-bottom: 30px;
 }
 
 .action-btn:hover, .logout-btn:hover {
@@ -210,7 +170,6 @@ nav a.active {
   font-size: 1.5rem;
 }
 
-/* Film Grid */
 .film-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -283,7 +242,6 @@ nav a.active {
   transform: scale(1.05);
 }
 
-/* Bloomoon Favorite Textarea */
 #fav-bloomoon {
   width: 100%;
   min-height: 120px;
@@ -459,7 +417,6 @@ nav a.active {
   transform: translateY(-2px);
 }
 
-/* Notification */
 .notification {
   position: fixed;
   top: 20px;
@@ -494,7 +451,6 @@ nav a.active {
   display: none !important;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .film-grid {
     grid-template-columns: repeat(2, 1fr);
