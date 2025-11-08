@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Get stored film data
+  
   const storedData = localStorage.getItem("selectedFilm");
 
-  // If nothing stored → show fallback message
+  
   if (!storedData) {
     document.querySelector(".film-details").innerHTML = `
       <p>Film details not found. Please go back to the <a href='library.html'>library</a>.</p>
@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // Parse data object that was saved from dataset attributes
+  
   const film = JSON.parse(storedData);
 
-  // Insert film data into page
+  
   document.getElementById("film-title").textContent = film.title;
   document.getElementById("film-name").textContent = film.title;
   document.getElementById("film-duration").textContent = film.duration;
@@ -23,11 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("film-description").textContent = film.description;
   document.getElementById("film-poster").src = film.src || film.poster || "../images/perfect-sorrow.jpg";
 
-  // Update YouTube link
+
   const youtubeBtn = document.getElementById("youtube-link");
   if (film.link) youtubeBtn.href = film.link;
 
-  // 🌸 GSAP animations (unchanged)
+  
   gsap.from("header", {
     duration: 1,
     y: -60,

@@ -1,4 +1,3 @@
-// BLOOMOON DIARY SCRIPT WITH LOCALSTORAGE + EDIT/DELETE
 
 const reviewTypeRadios = document.querySelectorAll('input[name="reviewType"]');
 const searchSection = document.getElementById('searchSection');
@@ -13,18 +12,18 @@ const stars = document.querySelectorAll('.star');
 const ratingInput = document.getElementById('rating');
 
 let selectedPoster = null;
-let editIndex = null; // Track which entry is being edited
+let editIndex = null; 
 
-// Initialize page
+
 document.addEventListener('DOMContentLoaded', () => {
   loadEntriesFromStorage();
   setupEventListeners();
   updateEntryCount();
 });
 
-// Set up event listeners
+
 function setupEventListeners() {
-  // Review type radio buttons
+  
   reviewTypeRadios.forEach(radio => {
     radio.addEventListener('change', () => {
       searchSection.classList.toggle('hidden', radio.value !== 'global');
@@ -32,12 +31,11 @@ function setupEventListeners() {
     });
   });
 
-  // Character counter for review textarea
   reviewTextarea.addEventListener('input', () => {
     const count = reviewTextarea.value.length;
     charCount.textContent = count;
     
-    // Change color when approaching limit
+    
     if (count > 450) {
       charCount.style.color = '#ff6b6b';
     } else if (count > 400) {
@@ -47,7 +45,7 @@ function setupEventListeners() {
     }
   });
 
-  // Star rating interaction
+  
   stars.forEach(star => {
     star.addEventListener('click', () => {
       const rating = star.getAttribute('data-rating');
@@ -60,14 +58,13 @@ function setupEventListeners() {
     });
   });
 
-  // Reset stars when mouse leaves the rating container
   document.querySelector('.star-rating').addEventListener('mouseleave', () => {
     const currentRating = ratingInput.value || 0;
     highlightStars(currentRating);
   });
 }
 
-// API Search
+
 searchBtn.addEventListener('click', async () => {
   const query = searchInput.value.trim();
   if (!query) {
@@ -75,7 +72,7 @@ searchBtn.addEventListener('click', async () => {
     return;
   }
 
-  // Add loading animation to search button
+  
   const originalText = searchBtn.innerHTML;
   searchBtn.innerHTML = '<span class="search-icon">⏳</span> Searching...';
   searchBtn.disabled = true;
@@ -117,7 +114,7 @@ function resetSearchButton(originalText) {
   searchBtn.disabled = false;
 }
 
-// FORM SUBMIT
+
 form.addEventListener('submit', e => {
   e.preventDefault();
 
@@ -146,7 +143,7 @@ form.addEventListener('submit', e => {
 
   let diary = JSON.parse(localStorage.getItem('bloomoonDiary')) || [];
 
-  // EDIT MODE
+  
   if (editIndex !== null) {
     diary[editIndex] = entryData;
     editIndex = null;
@@ -166,7 +163,7 @@ form.addEventListener('submit', e => {
   updateEntryCount();
 });
 
-// ADD ONE ENTRY TO PAGE
+
 function addEntryToPage(entryData, index) {
   const entry = document.createElement('article');
   entry.classList.add('entry');
@@ -193,7 +190,7 @@ function addEntryToPage(entryData, index) {
 
   entries.prepend(entry);
 
-  // Delete functionality
+  
   entry.querySelector('.delete-btn').addEventListener('click', (e) => {
     e.stopPropagation();
     
@@ -205,7 +202,7 @@ function addEntryToPage(entryData, index) {
     showNotification('Entry deleted.', 'info');
   });
 
-  // Edit functionality
+ 
   entry.querySelector('.edit-btn').addEventListener('click', (e) => {
     e.stopPropagation();
     editIndex = index;
@@ -222,14 +219,14 @@ function addEntryToPage(entryData, index) {
       searchSection.classList.add('hidden');
     }
     
-    // Scroll to form
+   
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
     showNotification('Editing entry...', 'info');
   });
 }
 
-// Generate star rating display
+
 function generateStarRating(rating) {
   let stars = '';
   for (let i = 1; i <= 5; i++) {
@@ -242,13 +239,12 @@ function generateStarRating(rating) {
   return stars;
 }
 
-// Set star rating
 function setRating(rating) {
   ratingInput.value = rating;
   highlightStars(rating);
 }
 
-// Highlight stars based on rating
+
 function highlightStars(rating) {
   stars.forEach(star => {
     if (star.getAttribute('data-rating') <= rating) {
@@ -269,9 +265,9 @@ function updateEntryCount() {
   entryCount.textContent = `${count} ${count === 1 ? 'entry' : 'entries'}`;
 }
 
-// Show notification
+
 function showNotification(message, type) {
-  // Remove existing notifications
+  
   const existingNotification = document.querySelector('.notification');
   if (existingNotification) {
     existingNotification.remove();
@@ -283,12 +279,12 @@ function showNotification(message, type) {
   
   document.body.appendChild(notification);
   
-  // Animate in
+  
   setTimeout(() => {
     notification.style.transform = 'translateX(0)';
   }, 10);
   
-  // Animate out after 3 seconds
+  
   setTimeout(() => {
     notification.style.transform = 'translateX(100%)';
     setTimeout(() => {

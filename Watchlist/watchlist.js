@@ -1,6 +1,6 @@
-// Animation on page load
+
 document.addEventListener("DOMContentLoaded", () => {
-  // Animate the welcome text
+  
   gsap.from("#welcome-text", { 
     opacity: 0, 
     y: -20, 
@@ -8,16 +8,16 @@ document.addEventListener("DOMContentLoaded", () => {
     ease: "power2.out" 
   });
   
-  // Animate navigation
+  
   gsap.timeline()
     .from("nav", { y: -60, opacity: 0, duration: 1, ease: "power3.out" })
     .from(".search-bar", { opacity: 0, y: 30, duration: 1 }, "-=0.6");
   
-  // Load and render watchlists
+  
   renderLists();
 });
 
-// DOM elements
+
 const searchBtn = document.getElementById("searchBtn");
 const searchInput = document.getElementById("searchInput");
 const searchType = document.getElementById("searchType");
@@ -25,13 +25,13 @@ const searchResults = document.getElementById("searchResults");
 const bloomoonList = document.getElementById("bloomoonList");
 const globalList = document.getElementById("globalList");
 
-// Load saved lists from localStorage
+
 let bloomoonWatchlist = JSON.parse(localStorage.getItem("bloomoonWatchlist")) || [];
 let globalWatchlist = JSON.parse(localStorage.getItem("globalWatchlist")) || [];
 
-// Render the watchlists
+
 function renderLists() {
-  // Render Bloomoon watchlist
+  
   if (bloomoonWatchlist.length > 0) {
     bloomoonList.innerHTML = bloomoonWatchlist.map((item, index) => `
       <li>
@@ -46,7 +46,7 @@ function renderLists() {
     bloomoonList.innerHTML = '<li class="empty-message">Your Bloomoon watchlist is empty</li>';
   }
 
-  // Render Global watchlist
+  
   if (globalWatchlist.length > 0) {
     globalList.innerHTML = globalWatchlist.map((item, index) => `
       <li>
@@ -61,7 +61,7 @@ function renderLists() {
     globalList.innerHTML = '<li class="empty-message">Your Global watchlist is empty</li>';
   }
 
-  // Add event listeners to delete buttons
+  
   document.querySelectorAll('.delete-btn').forEach(button => {
     button.addEventListener('click', (e) => {
       const index = parseInt(e.target.dataset.index);
@@ -80,7 +80,7 @@ function renderLists() {
   });
 }
 
-// Handle search functionality
+
 searchBtn.addEventListener("click", async () => {
   const query = searchInput.value.trim();
   const type = searchType.value;
@@ -92,7 +92,7 @@ searchBtn.addEventListener("click", async () => {
   }
 
   if (type === "global") {
-    // Jikan API for anime
+    
     try {
       const response = await fetch(`https://api.jikan.moe/v4/anime?q=${query}&limit=5`);
       const data = await response.json();
@@ -107,7 +107,7 @@ searchBtn.addEventListener("click", async () => {
             <button>Add to Global Watchlist</button>
           `;
           card.querySelector("button").addEventListener("click", () => {
-            // Check if already in watchlist
+            
             const exists = globalWatchlist.some(item => item.title === anime.title);
             if (!exists) {
               globalWatchlist.push({ 
@@ -117,7 +117,7 @@ searchBtn.addEventListener("click", async () => {
               localStorage.setItem("globalWatchlist", JSON.stringify(globalWatchlist));
               renderLists();
               
-              // Animate the addition
+              
               gsap.from(card, {
                 scale: 0.8,
                 duration: 0.5,
@@ -137,7 +137,7 @@ searchBtn.addEventListener("click", async () => {
       searchResults.innerHTML = "<p class='empty-message'>Error fetching data. Please try again.</p>";
     }
   } else {
-    // Fake Bloomoon catalog
+    
     const bloomoonData = [
       { title: "Moonlit Melodies", image: "https://via.placeholder.com/150x200/8ba15c/ffffff?text=Moonlit+Melodies" },
       { title: "Starfall Dreams", image: "https://via.placeholder.com/150x200/4f8a8b/ffffff?text=Starfall+Dreams" },
@@ -162,14 +162,14 @@ searchBtn.addEventListener("click", async () => {
           <button>Add to Bloomoon Watchlist</button>
         `;
         card.querySelector("button").addEventListener("click", () => {
-          // Check if already in watchlist
+         
           const exists = bloomoonWatchlist.some(watchItem => watchItem.title === item.title);
           if (!exists) {
             bloomoonWatchlist.push(item);
             localStorage.setItem("bloomoonWatchlist", JSON.stringify(bloomoonWatchlist));
             renderLists();
             
-            // Animate the addition
+          
             gsap.from(card, {
               scale: 0.8,
               duration: 0.5,
@@ -185,7 +185,7 @@ searchBtn.addEventListener("click", async () => {
   }
 });
 
-// Allow pressing Enter to search
+
 searchInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     searchBtn.click();

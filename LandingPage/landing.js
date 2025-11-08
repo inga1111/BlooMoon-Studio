@@ -107,4 +107,39 @@ document.addEventListener("DOMContentLoaded", () => {
     opacity: 0,
     ease: "bounce.out"
   });
+
+  // FUN LOGO IMAGE ANIMATION (tv-image)
+  const tv = document.querySelector('.tv-image');
+  if (tv) {
+    // entrance with a playful rotation
+    gsap.from(tv, { duration: 1.1, scale: 0.85, opacity: 0, rotation: -10, ease: 'back.out(1.6)' });
+
+    // gentle floating + slow rotation to give life
+    gsap.to(tv, {
+      y: -14,
+      rotation: 6,
+      duration: 3.8,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut'
+    });
+
+    // hover interaction: pop & spin a little
+    tv.addEventListener('mouseenter', () => {
+      gsap.to(tv, { scale: 1.08, rotation: 12, duration: 0.35, ease: 'power2.out' });
+    });
+    tv.addEventListener('mouseleave', () => {
+      gsap.to(tv, { scale: 1, rotation: 0, duration: 0.6, ease: 'elastic.out(1, 0.6)' });
+    });
+  }
+
+  // subtle logo text pulse (letter-spacing + color) for playful effect
+  gsap.to('#bloomoon-logo', {
+    duration: 2.6,
+    letterSpacing: '6px',
+    color: '#ff6fb1',
+    repeat: -1,
+    yoyo: true,
+    ease: 'sine.inOut'
+  });
 });

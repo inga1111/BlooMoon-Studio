@@ -1,30 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Profile page loaded");
   
-  // Show the body immediately to prevent flash
+  
   document.body.classList.add('loaded');
   
-  // Initialize the page
+ 
   initProfilePage();
   
-  // Set up all event listeners
+ 
   setupEventListeners();
   
-  // Load user data
+  /
   loadUserData();
 });
 
 function initProfilePage() {
   console.log("Initializing profile page");
   
-  // Initialize empty favorites grid
+ 
   renderFavoritesGrid();
 }
 
 function setupEventListeners() {
   console.log("Setting up event listeners");
   
-  // Profile picture upload
+  
   const profilePic = document.getElementById("profile-pic");
   const uploadInput = document.getElementById("upload-pic");
   
@@ -37,7 +37,7 @@ function setupEventListeners() {
     uploadInput.addEventListener("change", handleProfilePicUpload);
   }
 
-  // Log Review button
+  
   const logReviewBtn = document.getElementById("log-review-btn");
   if (logReviewBtn) {
     logReviewBtn.addEventListener("click", () => {
@@ -46,19 +46,19 @@ function setupEventListeners() {
     });
   }
 
-  // Add Favorite button
+  
   const addFavBtn = document.getElementById("add-fav-btn");
   if (addFavBtn) {
     addFavBtn.addEventListener("click", openFavModal);
   }
 
-  // Log Out button
+  
   const logoutBtn = document.getElementById("logout-btn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", handleLogout);
   }
 
-  // Modal functionality
+  
   const favSearchBtn = document.getElementById("fav-search-btn");
   if (favSearchBtn) {
     favSearchBtn.addEventListener("click", searchAnimations);
@@ -74,7 +74,7 @@ function setupEventListeners() {
     closeModalBtn.addEventListener("click", closeFavModal);
   }
   
-  // Close modal when clicking outside
+  
   const favModal = document.getElementById("fav-modal");
   if (favModal) {
     favModal.addEventListener("click", (e) => {
@@ -84,7 +84,7 @@ function setupEventListeners() {
     });
   }
   
-  // Save favorite Bloomoon work on input
+  
   const favBloomoon = document.getElementById("fav-bloomoon");
   if (favBloomoon) {
     favBloomoon.addEventListener("input", (e) => {
@@ -92,7 +92,7 @@ function setupEventListeners() {
     });
   }
   
-  // Allow Enter key to trigger search
+  
   const favSearch = document.getElementById("fav-search");
   if (favSearch) {
     favSearch.addEventListener("keypress", (e) => {
@@ -124,7 +124,7 @@ function openFavModal() {
     modal.classList.add("active");
     modal.classList.remove("hidden");
     
-    // Clear previous search results
+   
     const resultsContainer = document.getElementById("fav-search-results");
     if (resultsContainer) {
       resultsContainer.innerHTML = "";
@@ -162,7 +162,7 @@ async function searchAnimations() {
   resultsContainer.innerHTML = "<p>Searching...</p>";
   
   try {
-    // Try Jikan API for anime
+    
     console.log("Searching for:", query);
     const jikanResponse = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(query)}&limit=5`);
     const jikanData = await jikanResponse.json();
@@ -173,13 +173,13 @@ async function searchAnimations() {
       return;
     }
     
-    // Try OMDB API for movies
+   
     const omdbResponse = await fetch(`https://www.omdbapi.com/?apikey=564727fa&s=${encodeURIComponent(query)}&type=movie`);
     const omdbData = await omdbResponse.json();
     
     if (omdbData.Response === "True" && omdbData.Search && omdbData.Search.length > 0) {
       console.log("Found movie results:", omdbData.Search.length);
-      // Get full details for each movie
+      
       const detailedResults = await Promise.all(
         omdbData.Search.slice(0, 5).map(async (movie) => {
           const detailResponse = await fetch(`https://www.omdbapi.com/?apikey=564727fa&i=${movie.imdbID}`);
@@ -241,30 +241,30 @@ function displaySearchResults(results, type) {
 }
 
 function addToFavorites(animation) {
-  // Get current favorites from localStorage
+  
   let favorites = JSON.parse(localStorage.getItem("userFavorites")) || [];
   
-  // Check if already in favorites
+  
   const exists = favorites.some(fav => fav.title === animation.title);
   if (exists) {
     showNotification("This animation is already in your favorites!", "error");
     return;
   }
   
-  // Check if we have space (max 4)
+  
   if (favorites.length >= 4) {
     showNotification("You can only have 4 favorites. Remove one to add another.", "error");
     return;
   }
   
-  // Add to favorites
+ 
   favorites.push(animation);
   localStorage.setItem("userFavorites", JSON.stringify(favorites));
   
-  // Update the grid
+  
   renderFavoritesGrid();
   
-  // Close modal and show success message
+  
   closeFavModal();
   showNotification("Animation added to favorites!", "success");
 }
@@ -291,7 +291,7 @@ function renderFavoritesGrid() {
   
   console.log("Rendering favorites:", favorites);
   
-  // Render existing favorites
+  
   favorites.forEach((fav, index) => {
     const filmItem = document.createElement("div");
     filmItem.className = "film-item";
@@ -300,7 +300,7 @@ function renderFavoritesGrid() {
       <button class="remove-btn" data-index="${index}">×</button>
     `;
     
-    // Add remove functionality
+    
     const removeBtn = filmItem.querySelector(".remove-btn");
     removeBtn.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -310,7 +310,7 @@ function renderFavoritesGrid() {
     grid.appendChild(filmItem);
   });
   
-  // Add empty slots if needed
+  
   const emptySlots = 4 - favorites.length;
   for (let i = 0; i < emptySlots; i++) {
     const emptySlot = document.createElement("div");
@@ -320,7 +320,7 @@ function renderFavoritesGrid() {
     grid.appendChild(emptySlot);
   }
   
-  // Animate the grid after rendering
+  
   animatePageLoad();
 }
 
@@ -334,14 +334,14 @@ function handleLogout() {
 function loadUserData() {
   console.log("Loading user data");
   
-  // Load username
+ 
   const storedUser = JSON.parse(localStorage.getItem("bloomoonUser"));
   const usernameElement = document.getElementById("username");
   if (storedUser && usernameElement) {
     usernameElement.textContent = storedUser.username || "Bloomoon User";
   }
   
-  // Load profile picture
+  
   const savedPic = localStorage.getItem("profilePic");
   if (savedPic) {
     const profilePic = document.getElementById("profile-pic");
@@ -350,7 +350,7 @@ function loadUserData() {
     }
   }
   
-  // Load favorite Bloomoon work
+  
   const savedBloomoonWork = localStorage.getItem("favoriteBloomoonWork");
   if (savedBloomoonWork) {
     const favBloomoon = document.getElementById("fav-bloomoon");
@@ -359,10 +359,10 @@ function loadUserData() {
     }
   }
   
-  // Load initial favorites if none exist (for demo)
+  
   const favorites = JSON.parse(localStorage.getItem("userFavorites")) || [];
   if (favorites.length === 0) {
-    // Add some default favorites for demo
+    
     const defaultFavorites = [
       {
         title: "Spirited Away",
@@ -389,9 +389,9 @@ function showNotification(message, type) {
 }
 
 function animatePageLoad() {
-  // Use GSAP for animations if available
+ 
   if (typeof gsap !== 'undefined') {
-    // Animate the profile container elements
+    
     gsap.to(".profile-container > *", {
       opacity: 1,
       duration: 0.8,
@@ -399,7 +399,7 @@ function animatePageLoad() {
       ease: "power2.out"
     });
     
-    // Specific animations for different elements
+    
     gsap.fromTo(".profile-pic-container", 
       { y: -20, opacity: 0 },
       { y: 0, opacity: 1, duration: 1, delay: 0.2 }
@@ -415,13 +415,13 @@ function animatePageLoad() {
       { scale: 1, opacity: 1, duration: 0.8, stagger: 0.1, delay: 0.5 }
     );
     
-    // Animate film grid items
+    
     gsap.fromTo(".film-item, .empty-slot", 
       { scale: 0.8, opacity: 0 },
       { scale: 1, opacity: 1, duration: 0.6, stagger: 0.1, delay: 0.7 }
     );
   } else {
-    // Fallback if GSAP is not available
+    
     const elements = document.querySelectorAll('.profile-container > *');
     elements.forEach((el, index) => {
       setTimeout(() => {

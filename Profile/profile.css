@@ -126,6 +126,10 @@ body {
 #log-review-btn {
   margin-top: -30px;
   margin-bottom: 30px;
+  /* smaller, compact sizing */
+  padding: 8px 14px;
+  min-width: 120px;
+  font-size: 0.9rem;
 }
 
 .action-btn:hover, .logout-btn:hover {
@@ -168,10 +172,10 @@ body {
 .film-grid {
   display: grid;
   /* make favorite posters a bit smaller while remaining responsive */
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 14px;
-  margin: 20px auto;
-  max-width: 760px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 12px;
+  margin: 16px auto;
+  max-width: 620px;
 }
 
 .film-item {
@@ -183,7 +187,7 @@ body {
   cursor: pointer;
   aspect-ratio: 2/3;
   /* limit item width so posters in favorites display smaller */
-  max-width: 160px;
+  max-width: 140px;
 }
 
 .film-item:hover {
@@ -284,13 +288,13 @@ body {
   display: none;
 }
 
-/* Keep the Add Favorite button centered and a bit smaller */
+
 #add-fav-btn {
   display: block;
   margin: 12px auto;
-  padding: 9px 18px;
-  min-width: 160px;
-  font-size: 0.95rem;
+  padding: 8px 14px;
+  min-width: 120px;
+  font-size: 0.9rem;
 }
 
 .fav-modal-content {

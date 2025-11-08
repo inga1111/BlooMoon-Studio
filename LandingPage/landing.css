@@ -21,11 +21,11 @@ body {
 }
 
 .tv-image {
-  height: 300px;
-  width: 400px;
+  height: 500px;
+  width: 600px;
   transform: translateY(-30px);
-  margin-bottom: 1rem;
-  margin-top: 1.5rem;
+  margin-bottom: 0.1rem;
+  margin-top: 0.1rem;
 }
 
 #signInBtn {
@@ -48,7 +48,6 @@ body {
   background-color: #A9BF56;
 }
 
-/* MODAL STYLING */
 .modal {
   display: none;
   position: fixed;
@@ -107,7 +106,7 @@ input {
   cursor: pointer;
 }
 
-/* Animation */
+
 @keyframes popIn {
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }

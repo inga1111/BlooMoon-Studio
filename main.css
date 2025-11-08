@@ -52,7 +52,7 @@ footer a {
   font-size: 1rem;
 }
 
-/* SITE NAVBAR (shared) */
+
 .site-nav {
   display: flex;
   justify-content: space-between;
@@ -90,7 +90,7 @@ footer a {
   font-size: 1.2rem;
   cursor: pointer;
 }
-/* small screens */
+
 @media (max-width: 720px) {
   #nav-toggle { display: block; }
   .site-nav .nav-links { display: none; position: absolute; top: 58px; right: 16px; background: #fff; padding: 12px; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); flex-direction: column; }

@@ -21,29 +21,29 @@ body {
   margin-top: -10px;
 }
 
-/* Film Gallery Grid */
+
 .film-gallery {
   display: grid;
-  /* make cards a bit larger and keep them centered */
+  
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 28px;
   padding: 24px;
-  justify-items: center; /* centers children horizontally */
+  justify-items: center; 
   align-items: start;
-  margin: 0 auto 0; /* center the gallery block horizontally */
+  margin: 0 auto 0; 
   max-width: 1200px;
 }
 
-/* Card */
+
 .film-card {
   text-align: center;
   transition: transform .35s ease;
   display: flex;
   flex-direction: column;
-  align-items: center; /* ensure inner content (figure, buttons) are centered */
+  align-items: center; 
 }
 
-/* Add spacing so the View Details button sits slightly lower under the poster */
+
 .film-card .buttons {
   margin-top: 12px;
 }
@@ -52,16 +52,15 @@ body {
   transform: translateY(-6px);
 }
 
-/* Poster */
+
 .film-card figure {
   position: relative;
-  /* increased poster card size for more impact */
-  width: 240px;
+ 
   height: 340px;
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 10px 26px rgba(47, 179, 227, 0.26);
-  margin: 0 auto; /* center the figure inside the card */
+  margin: 0 auto;
 }
 
 .film-poster {
@@ -74,7 +73,7 @@ body {
   transform: scale(1.08);
 }
 
-/* WATCH overlay */
+
 .watch-overlay {
   position: absolute;
   bottom: 0;

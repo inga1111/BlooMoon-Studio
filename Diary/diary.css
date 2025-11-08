@@ -5,6 +5,16 @@
   box-sizing: border-box;
 }
 
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 :root {
   --primary-color: #a7e0e2;
   --primary-dark: #8fd3d6;
@@ -20,16 +30,6 @@
 }
 
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-/* Navigation styles */
 nav {
   background-color: var(--primary-color);
   padding: 1rem 2rem;
@@ -53,14 +53,13 @@ nav {
   text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Main content */
+
 main {
   padding: 2rem;
   max-width: 1200px;
   margin: auto;
 }
 
-/* Side-by-side layout container */
 .diary-container {
   display: flex;
   gap: 2rem;
@@ -82,7 +81,6 @@ main {
   transform: translateY(-5px);
 }
 
-/* Section headers */
 .section-header {
   display: flex;
   justify-content: space-between;
@@ -112,7 +110,6 @@ h2 {
   transform: scale(1.05);
 }
 
-/* Form elements */
 input, textarea, button {
   width: 100%;
   padding: 0.7rem;
@@ -201,7 +198,6 @@ input[type="radio"]:checked + .radio-custom::after {
   background: var(--secondary-color);
 }
 
-/* Search section */
 .search-container {
   display: flex;
   gap: 0.5rem;
@@ -229,7 +225,6 @@ input[type="radio"]:checked + .radio-custom::after {
   transform: scale(1.2) rotate(10deg);
 }
 
-/* Rating stars */
 .rating-container {
   display: flex;
   flex-direction: column;
@@ -263,7 +258,6 @@ input[type="radio"]:checked + .radio-custom::after {
   text-align: center;
 }
 
-/* Buttons */
 button {
   background-color: var(--primary-color);
   border: none;
@@ -323,7 +317,6 @@ button:hover {
   transform: scale(1.2) rotate(10deg);
 }
 
-/* Entries section */
 #entries {
   display: flex;
   flex-direction: column;
@@ -404,7 +397,6 @@ button:hover {
   box-shadow: 0 4px 8px rgba(242, 194, 194, 0.4);
 }
 
-/* Responsive layout */
 @media (max-width: 768px) {
   .diary-container {
     flex-direction: column;
@@ -429,8 +421,6 @@ button:hover {
     height: 200px;
   }
 }
-
-/* Scrollbar styling */
 #entries::-webkit-scrollbar {
   width: 8px;
 }
