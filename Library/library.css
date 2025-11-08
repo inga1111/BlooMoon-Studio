@@ -24,9 +24,10 @@ body {
 /* Film Gallery Grid */
 .film-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap:30px;
-  padding:20px;
+  /* slightly smaller min width so cards render a bit smaller */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 24px;
+  padding: 20px;
   justify-items: center;
   margin-top: -30px;
 }
@@ -44,8 +45,9 @@ body {
 /* Poster */
 .film-card figure {
   position: relative;
-  width: 190px;
-  height: 250px;
+  /* slightly reduced poster card size */
+  width: 170px;
+  height: 230px;
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(47, 179, 227, 0.581);

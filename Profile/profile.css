@@ -26,11 +26,6 @@ body.loaded {
   --background-color: #fff8ef;
   --card-color: #fdf3e7;
   --text-color: #333;
-
-#add-fav-btn {
-  display: block;
-  margin: 12px auto;
-}
   --shadow-light: 2px 4px 8px rgba(28, 146, 157, 0.725);
   --shadow-medium: 2px 6px 12px rgba(30, 115, 130, 0.949);
   --border-radius: 1.5rem;
@@ -284,6 +279,15 @@ body {
 
 .fav-modal.hidden {
   display: none;
+}
+
+/* Keep the Add Favorite button centered and a bit smaller */
+#add-fav-btn {
+  display: block;
+  margin: 12px auto;
+  padding: 9px 18px;
+  min-width: 160px;
+  font-size: 0.95rem;
 }
 
 .fav-modal-content {
