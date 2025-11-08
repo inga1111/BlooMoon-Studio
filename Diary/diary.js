@@ -1,4 +1,4 @@
-// BLOOMOON DIARY SCRIPT WITH LOCALSTORAGE + EDIT/DELETE + GSAP + ENHANCED INTERACTIONS
+// BLOOMOON DIARY SCRIPT WITH LOCALSTORAGE + EDIT/DELETE
 
 const reviewTypeRadios = document.querySelectorAll('input[name="reviewType"]');
 const searchSection = document.getElementById('searchSection');
@@ -18,7 +18,6 @@ let editIndex = null; // Track which entry is being edited
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
   loadEntriesFromStorage();
-  animatePage();
   setupEventListeners();
   updateEntryCount();
 });
@@ -30,7 +29,6 @@ function setupEventListeners() {
     radio.addEventListener('change', () => {
       searchSection.classList.toggle('hidden', radio.value !== 'global');
       selectedPoster = null;
-      animateSection(searchSection);
     });
   });
 
@@ -166,9 +164,6 @@ form.addEventListener('submit', e => {
   selectedPoster = null;
   searchSection.classList.add('hidden');
   updateEntryCount();
-  
-  // Animate the diary section to draw attention
-  animateSection(document.querySelector('.diary-library'));
 });
 
 // ADD ONE ENTRY TO PAGE
@@ -197,26 +192,17 @@ function addEntryToPage(entryData, index) {
   `;
 
   entries.prepend(entry);
-  animateEntry(entry);
 
   // Delete functionality
   entry.querySelector('.delete-btn').addEventListener('click', (e) => {
     e.stopPropagation();
     
-    // Animation before deletion
-    gsap.to(entry, {
-      duration: 0.3,
-      scale: 0.9,
-      opacity: 0,
-      onComplete: () => {
-        let diary = JSON.parse(localStorage.getItem('bloomoonDiary')) || [];
-        diary.splice(index, 1);
-        localStorage.setItem('bloomoonDiary', JSON.stringify(diary));
-        entry.remove();
-        updateEntryCount();
-        showNotification('Entry deleted.', 'info');
-      }
-    });
+    let diary = JSON.parse(localStorage.getItem('bloomoonDiary')) || [];
+    diary.splice(index, 1);
+    localStorage.setItem('bloomoonDiary', JSON.stringify(diary));
+    entry.remove();
+    updateEntryCount();
+    showNotification('Entry deleted.', 'info');
   });
 
   // Edit functionality
@@ -236,29 +222,10 @@ function addEntryToPage(entryData, index) {
       searchSection.classList.add('hidden');
     }
     
-    // Scroll to form with animation
+    // Scroll to form
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    // Highlight the form section
-    const formSection = document.querySelector('.review-log');
-    gsap.to(formSection, {
-      duration: 0.5,
-      boxShadow: '0 0 0 3px rgba(241, 79, 168, 0.5)',
-      yoyo: true,
-      repeat: 1
-    });
-    
     showNotification('Editing entry...', 'info');
-  });
-
-  // Entry click effect
-  entry.addEventListener('click', () => {
-    gsap.to(entry, {
-      duration: 0.2,
-      scale: 0.98,
-      yoyo: true,
-      repeat: 1
-    });
   });
 }
 
@@ -300,14 +267,6 @@ function loadEntriesFromStorage() {
 function updateEntryCount() {
   const count = document.querySelectorAll('.entry').length;
   entryCount.textContent = `${count} ${count === 1 ? 'entry' : 'entries'}`;
-  
-  // Animate the count change
-  gsap.to(entryCount, {
-    duration: 0.3,
-    scale: 1.2,
-    yoyo: true,
-    repeat: 1
-  });
 }
 
 // Show notification
@@ -321,32 +280,6 @@ function showNotification(message, type) {
   const notification = document.createElement('div');
   notification.className = `notification notification-${type}`;
   notification.textContent = message;
-  
-  // Add styles for notification
-  notification.style.cssText = `
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 12px 20px;
-    border-radius: 8px;
-    color: white;
-    font-weight: 500;
-    z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-  `;
-  
-  // Set background color based on type
-  if (type === 'success') {
-    notification.style.backgroundColor = '#4caf50';
-  } else if (type === 'error') {
-    notification.style.backgroundColor = '#f44336';
-  } else if (type === 'warning') {
-    notification.style.backgroundColor = '#ff9800';
-  } else {
-    notification.style.backgroundColor = '#2196f3';
-  }
   
   document.body.appendChild(notification);
   
@@ -364,45 +297,4 @@ function showNotification(message, type) {
       }
     }, 300);
   }, 3000);
-}
-
-/* GSAP ANIMATIONS */
-function animatePage() {
-  // Animate navigation
-  gsap.from("nav", { 
-    duration: 1, 
-    y: -50, 
-    opacity: 0, 
-    ease: "power3.out" 
-  });
-  
-  // Animate main content with staggered children
-  gsap.from(".diary-container > *", { 
-    duration: 1, 
-    y: 30, 
-    opacity: 0, 
-    stagger: 0.2,
-    ease: "power3.out",
-    delay: 0.5
-  });
-}
-
-function animateEntry(entry) {
-  gsap.from(entry, { 
-    duration: 0.8, 
-    y: 20, 
-    opacity: 0, 
-    scale: 0.9,
-    ease: "back.out(1.7)" 
-  });
-}
-
-function animateSection(section) {
-  gsap.to(section, {
-    duration: 0.5,
-    y: -10,
-    boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
-    yoyo: true,
-    repeat: 1
-  });
 }

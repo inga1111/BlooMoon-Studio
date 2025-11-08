@@ -48,7 +48,7 @@ body {
   height: 250px;
   overflow: hidden;
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(245, 32, 100, 0.15);
+  box-shadow: 0 8px 20px rgba(47, 179, 227, 0.581);
 }
 
 .film-poster {
@@ -89,7 +89,9 @@ body {
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
+  box-shadow: 0 8px 20px rgba(242, 72, 126, 0.492);
 }
+
 .view-btn:hover {
   background-color: #a7e0e2;
   transform: scale(1.05);
