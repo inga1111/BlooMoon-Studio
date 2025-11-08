@@ -1,172 +1,99 @@
+
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #fff8ef;
+  color: #333;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
 }
 
-/* Navigation */
-.logo {
-    font-size: 1.4rem;
-    padding: 10px 10px;
-}
-
-nav {
+header {
   background-color: #a7e0e2;
-  display: flex;
-  justify-content: space-between;
+  padding: 1rem 2rem;
   text-align: center;
-  padding: 5px 20px;
+  border-bottom: 2px solid #92c7c9;
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 60px;
-  font-size: 1.2rem;
-}
-
-nav a {
-  text-decoration: none;
+h1 {
+  font-size: 2rem;
+  margin: 0.3rem 0;
   color: #333;
-  font-weight: 500;
-  transition: 0.3s;
 }
 
-nav a:hover {
-  opacity: 0.6;
+
+main {
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
 }
 
-nav a.active {
-  color: #ff6fb1;
-  font-weight: bold;
+.review-log, .diary-library {
+  background-color: #fdf3e7;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
 }
 
-.page-title {
+h2 {
+  color: #f14fa8;
+  font-size: 30px;
   text-align: center;
-  margin-top: 40px;
-  color: #e07ea5;
-  font-size: 2.3rem;
-  opacity: 0;
+  margin-top: -20px;
+  margin-bottom: 5px;
 }
 
-/* Log Review Button */
-.log-container {
-  text-align: center;
-  margin: 20px;
+input, textarea, button {
+  width: 100%;
+  padding: 0.7rem;
+  margin: 0.5rem 0 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-family: inherit;
 }
 
-#logBtn {
-  background-color: #c7d86b;
-  color: #fff;
+button {
+  background-color: #a7e0e2;
   border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
-  font-size: 1rem;
-  transform: scale(1);
+  transition: all 0.3s ease;
 }
 
-#logBtn:hover {
-  background-color: #aabf56;
-  transform: scale(1.08);
+button:hover {
+  background-color: #8fd3d6;
 }
 
-/* Popup */
-.popup {
-  display: none;
-  position: fixed;
-  z-index: 10;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.6);
-  justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(3px);
+.review-type {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
 }
 
-.popup-content {
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 30px;
-  width: 400px;
-  position: relative;
-  animation: fadeScaleUp 0.4s ease forwards;
-}
-
-
-
-@keyframes fadeScaleUp {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-.close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-
-.entries-container {
-  margin: 40px auto;
-  width: 80%;
+#entries {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .entry {
-  background: #f7dce9;
-  border-radius: 15px;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-left: 5px solid #a7e0e2;
-  opacity: 0;
-  transform: translateY(30px);
+  background-color: #f5f0e4;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 3px 6px rgb(24, 154, 177);
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
-.entry:hover {
-  transform: translateY(-4px);
-  transition: 0.3s;
+.entry img {
+  width: 130px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 0.7rem;
+  box-shadow: #8fd3d6;
 }
 
-
-.star {
-  font-size: 1.5rem;
-  color: #ccc;
-  transition: 0.3s;
-}
-
-.star.filled {
-  color: rgb(255, 233, 110);
-  text-shadow: 0 0 8px rgb(219, 192, 37);
-}
-
-/* Delete Button */
-.deleteBtn {
-  margin-top: 10px;
-  background: #ff6fb1;
-  border: none;
-  color: white;
-  padding: 7px 14px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.deleteBtn:hover {
-  background: #e74a9d;
-}
-
-/* Header */
-.diary-header {
-  text-align: center;
-  margin-top: 80px;
-  color: #4f8a8b;
-}
-
-.diary-header h2 {
-  font-size: 2rem;
+.hidden {
+  display: none;
 }

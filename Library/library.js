@@ -1,10 +1,3 @@
-// Library/library.js
-// Safe, non-destructive enhancement that preserves existing behaviours
-// - keeps username injection
-// - keeps poster click -> store selectedFilm + redirect
-// - preserves original small GSAP entry animation
-// - ADDS: ScrollTrigger fade-in for film cards, page timeline, SVG MotionPath decorative animation
-// - loads ScrollTrigger & MotionPathPlugin dynamically if not present
 
 (function () {
   // ---------- Helpers ----------

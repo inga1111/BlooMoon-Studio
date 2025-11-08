@@ -6,53 +6,37 @@
   <title>Bloomoon | Profile</title>
   <link rel="stylesheet" href="profile.css">
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script defer src="profile.js"></script>
   <link rel="stylesheet" href="../main.css" /> 
 </head>
+
 <body>
-  <!-- Navigation -->
-   <nav>
+  <nav>
     <div class="logo">🌙 Bloomoon Studio</div>
     <ul>
-        <li><a href="../Library/library.html">Library</a></li>
-        <li><a href="../Diary/diary.html">Diary</a></li>
-        <li><a href="../Watchlist/watchlist.html">Watchlists</a></li>
-        <li><a href="profile.html" class="active">Profile</a></li>
-        <li><a href="../About/about.html">About</a></li>
+      <li><a href="../Library/library.html">Library</a></li>
+      <li><a href="../Diary/diary.html">Diary</a></li>
+      <li><a href="../Watchlist/watchlist.html">Watchlists</a></li>
+      <li><a href="profile.html" class="active">Profile</a></li>
+      <li><a href="../About/about.html">About</a></li>
     </ul>
   </nav>
-
   <main class="profile-container">
+
     <section class="user-info">
       <div class="profile-pic-container">
         <img id="profile-pic" src="../images/default-avatar.png" alt="User avatar">
         <input type="file" id="upload-pic" accept="image/*">
       </div>
-      <h2 id="username">user01</h2>
-
-      <div class="follow-buttons">
-        <button id="following-btn">following</button>
-        <button id="followers-btn">followers</button>
-      </div>
     </section>
 
-    <section class="follow-lists">
-      <div id="following-list" class="hidden">
-        <h3>Following</h3>
-        <ul id="following-users"></ul>
-      </div>
-
-      <div id="followers-list" class="hidden">
-        <h3>Followers</h3>
-        <ul id="followers-users"></ul>
-      </div>
-    </section>
+    <button id="log-review-btn" class="log-review">Log a Review</button>
 
     <section class="favorites">
-      <h3>Favorite Global Animations</h3>
-      <div class="film-grid" id="film-grid">
-        <!-- Populated by API -->
-      </div>
+      <h3>Your Top 4 Favorite Animations</h3>
+      <button id="add-fav-btn" class="add-fav">+ Add Favorite</button>
+      <div class="film-grid" id="film-grid"></div>
     </section>
 
     <section class="bloomoon-favorite">
@@ -62,6 +46,17 @@
 
     <button id="logout-btn" class="logout">Log Out</button>
   </main>
+  <!-- ✅ only close it here -->
 
-  </body>
+  <!-- Favorite Picker Modal -->
+  <div id="fav-modal" class="fav-modal hidden">
+    <div class="fav-modal-content">
+      <h3>Search Animation / Anime</h3>
+      <input type="text" id="fav-search" placeholder="e.g. Spirited Away, Toy Story, Paprika...">
+      <button id="fav-search-btn">Search</button>
+      <div id="fav-search-results"></div>
+      <button id="fav-close">Close</button>
+    </div>
+  </div>
+</body>
 </html>

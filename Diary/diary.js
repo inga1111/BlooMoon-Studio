@@ -1,106 +1,151 @@
-gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+// BLOOMOON DIARY SCRIPT WITH LOCALSTORAGE + EDIT/DELETE + GSAP
 
-const logBtn = document.querySelector("#logBtn");
-const popup = document.querySelector("#reviewPopup");
-const closePopup = document.querySelector("#closePopup");
-const reviewForm = document.querySelector("#reviewForm");
-const diaryEntries = document.querySelector("#diaryEntries");
+const reviewTypeRadios = document.querySelectorAll('input[name="reviewType"]');
+const searchSection = document.getElementById('searchSection');
+const searchBtn = document.getElementById('searchBtn');
+const searchInput = document.getElementById('search');
+const form = document.getElementById('reviewForm');
+const entries = document.getElementById('entries');
 
+let selectedPoster = null;
+let editIndex = null; // ✅ Track which entry is being edited
 
-document.addEventListener("DOMContentLoaded", () => {
-  loadEntries();
-
-  
-   gsap.timeline()
-    .from("nav", { y: -60, opacity: 0, duration: 1, ease: "power3.out" })
-    .from(".page-title", { opacity: 0, y: 30, duration: 1 }, "-=0.6");
-
-logBtn.addEventListener("click", () => popup.style.display = "flex");
-
-
-closePopup.addEventListener("click", () => popup.style.display = "none");
-
-
-reviewForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const title = document.querySelector("#title").value.trim();
-  const rating = document.querySelector("#rating").value;
-  const reviewText = document.querySelector("#reviewText").value.trim();
-
-  if (!title || !rating || !reviewText) return alert("Please fill all fields");
-
-  const newEntry = {
-    title,
-    rating,
-    review: reviewText,
-    date: new Date().toLocaleDateString(),
-  };
-
-  addEntryToDOM(newEntry);
-  saveEntry(newEntry);
-  reviewForm.reset();
-  popup.style.display = "none";
+document.addEventListener('DOMContentLoaded', () => {
+  loadEntriesFromStorage();
+  animatePage();
 });
 
-function generateStars(num) {
-  let starsHTML = "";
-  for (let i = 1; i <= 5; i++) {
-    starsHTML += `<span class="star ${i <= num ? "filled" : ""}">★</span>`;
-  }
-  return starsHTML;
-}
+// Show search only if reviewing global
+reviewTypeRadios.forEach(radio => {
+  radio.addEventListener('change', () => {
+    searchSection.classList.toggle('hidden', radio.value !== 'global');
+    selectedPoster = null;
+  });
+});
 
-function addEntryToDOM(entry) {
-  const card = document.createElement("div");
-  card.classList.add("entry");
-  card.innerHTML = `
-    <h3>${entry.title.toUpperCase()}</h3>
-    <p><strong>Rating:</strong> ${generateStars(entry.rating)}</p>
-    <p>"${entry.review}"</p>
-    <p><em>${entry.date}</em></p>
-    <button class="deleteBtn">Delete</button>
+// API Search
+searchBtn.addEventListener('click', async () => {
+  const query = searchInput.value.trim();
+  if (!query) return alert('Enter a title first.');
+
+  try {
+    const res = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(query)}&limit=1`);
+    const data = await res.json();
+    if (data.data?.length) {
+      selectedPoster = data.data[0].images.jpg.image_url;
+      document.getElementById('title').value = data.data[0].title;
+      return;
+    }
+  } catch {}
+
+  try {
+    const res = await fetch(`https://www.omdbapi.com/?apikey=564727fa&t=${encodeURIComponent(query)}`);
+    const data = await res.json();
+    if (data.Response === "True") {
+      selectedPoster = data.Poster;
+      document.getElementById('title').value = data.Title;
+      return;
+    }
+  } catch {}
+
+  alert("No results found.");
+});
+
+// FORM SUBMIT
+form.addEventListener('submit', e => {
+  e.preventDefault();
+
+  const title = document.getElementById('title').value.trim();
+  const review = document.getElementById('review').value.trim();
+  const rating = document.getElementById('rating').value.trim();
+  const type = document.querySelector('input[name="reviewType"]:checked').value;
+
+  const entryData = {
+    title,
+    review,
+    rating,
+    poster: selectedPoster || 'https://via.placeholder.com/90x130?text=Bloomoon',
+    type,
+    date: new Date().toLocaleDateString()
+  };
+
+  let diary = JSON.parse(localStorage.getItem('bloomoonDiary')) || [];
+
+  // EDIT MODE
+  if (editIndex !== null) {
+    diary[editIndex] = entryData;
+    editIndex = null;
+  } else {
+    diary.push(entryData);
+  }
+
+  localStorage.setItem('bloomoonDiary', JSON.stringify(diary));
+  entries.innerHTML = "";
+  diary.forEach(addEntryToPage);
+  form.reset();
+  selectedPoster = null;
+  searchSection.classList.add('hidden');
+});
+
+// ADD ONE ENTRY TO PAGE
+function addEntryToPage(entryData, index) {
+  const entry = document.createElement('article');
+  entry.classList.add('entry');
+
+  entry.innerHTML = `
+    <img src="${entryData.poster}">
+    <section>
+      <h3>${entryData.title}</h3>
+      <p><strong>${entryData.type === 'bloomoon' ? 'Bloomoon Original' : 'Global Animation'}</strong></p>
+      <p>⭐ ${entryData.rating}/5</p>
+      <p>${entryData.review}</p>
+      <p class="date">${entryData.date}</p>
+
+      <div class="entry-actions">
+        <button class="edit-btn" data-index="${index}">Edit</button>
+        <button class="delete-btn" data-index="${index}">Delete</button>
+      </div>
+    </section>
   `;
 
-  card.querySelector(".deleteBtn").addEventListener("click", () => {
-    card.remove();
-    deleteEntry(entry.title);
+  entries.prepend(entry);
+  animateEntry(entry);
+
+  // Delete
+  entry.querySelector('.delete-btn').addEventListener('click', () => {
+    let diary = JSON.parse(localStorage.getItem('bloomoonDiary')) || [];
+    diary.splice(index, 1);
+    localStorage.setItem('bloomoonDiary', JSON.stringify(diary));
+    entry.remove();
   });
 
-  diaryEntries.prepend(card);
-
-  
-  gsap.from(card, {
-    opacity: 0,
-    y: 40,
-    duration: 1,
-    ease: "power2.out"
+  // Edit
+  entry.querySelector('.edit-btn').addEventListener('click', () => {
+    editIndex = index;
+    document.getElementById('title').value = entryData.title;
+    document.getElementById('review').value = entryData.review;
+    document.getElementById('rating').value = entryData.rating;
+    if (entryData.type === 'global') {
+      selectedPoster = entryData.poster;
+      document.querySelector('input[value="global"]').checked = true;
+      searchSection.classList.remove('hidden');
+    } else {
+      document.querySelector('input[value="bloomoon"]').checked = true;
+      searchSection.classList.add('hidden');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-
-  
-  ScrollTrigger.create({
-    trigger: card,
-    start: "top 85%",
-    animation: gsap.to(card, {opacity: 1, y: 0, duration: 1}),
-  });
 }
 
-function saveEntry(entry) {
-  const entries = JSON.parse(localStorage.getItem("diaryEntries")) || [];
-  entries.push(entry);
-  localStorage.setItem("diaryEntries", JSON.stringify(entries));
+function loadEntriesFromStorage() {
+  const savedEntries = JSON.parse(localStorage.getItem('bloomoonDiary')) || [];
+  savedEntries.forEach(addEntryToPage);
 }
 
-function loadEntries() {
-  const entries = JSON.parse(localStorage.getItem("diaryEntries")) || [];
-  entries.forEach(addEntryToDOM);
+/* ✨ GSAP ANIMATION */
+function animatePage() {
+  gsap.from("main", { opacity: 0, y: 30, duration: 1.4, ease: "power3.out" });
 }
-
-function deleteEntry(title) {
-  let entries = JSON.parse(localStorage.getItem("diaryEntries")) || [];
-  entries = entries.filter(entry => entry.title !== title);
-  localStorage.setItem("diaryEntries", JSON.stringify(entries));
+function animateEntry(entry) {
+  gsap.from(entry, { opacity: 0, y: 20, duration: 0.8, ease: "power2.out" });
 }
-
-  gsap.from("#welcome-text", { opacity: 0, y: -20, duration: 1.4, ease: "power2.out" });
-  gsap.to("#username", { color: "#e98ab2", repeat: -1, yoyo: true, duration: 2 });

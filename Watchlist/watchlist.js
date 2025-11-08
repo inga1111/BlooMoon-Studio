@@ -96,3 +96,11 @@ searchBtn.addEventListener("click", async () => {
     gsap.timeline()
     .from("nav", { y: -60, opacity: 0, duration: 1, ease: "power3.out" })
     .from(".page-title", { opacity: 0, y: 30, duration: 1 }, "-=0.6");
+
+    // Delete
+  entry.querySelector('.delete-btn').addEventListener('click', () => {
+    let diary = JSON.parse(localStorage.getItem('bloomoonDiary')) || [];
+    diary.splice(index, 1);
+    localStorage.setItem('bloomoonDiary', JSON.stringify(diary));
+    entry.remove();
+  });
