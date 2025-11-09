@@ -21,23 +21,23 @@ body {
 }
 
 .tv-image {
-  height: 500px;
+  height: 560px;
   width: 600px;
   transform: translateY(-30px);
-  margin-bottom: 0.1rem;
+  margin-bottom: 0; 
   margin-top: 0.1rem;
 }
 
 #signInBtn {
   background-color: #7adbea;
   border: none;
-  padding: 0.8rem 1.5rem;
+  padding: 0.3rem 1rem;
   font-size: 1rem;
   border-radius: 25px;
   color: white;
   cursor: pointer;
   display: block;
-  margin: 0.5rem auto 1rem;
+  margin: 0.2rem auto 1rem; 
   transition: transform 0.3s ease, background-color 0.3s ease;
   box-shadow: 0 8px 20px rgba(46, 195, 236, 0.522);
 }
@@ -116,4 +116,38 @@ input {
   display: flex;
   justify-content: center;  
   align-items: center;  
+}
+
+/* Landing page responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    height: auto;
+    padding: 1.5rem 0 3rem;
+  }
+
+  #bloomoon-logo {
+    font-size: 4.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .tv-image {
+    width: min(420px, 86vw);
+    height: auto;
+    transform: translateY(-10px);
+  }
+
+  #signInBtn {
+    padding: 0.45rem 1rem;
+    font-size: 1rem;
+    margin: 0.4rem auto 1rem;
+  }
+
+  .modal-content { width: 90%; max-width: 380px; }
+}
+
+@media (max-width: 480px) {
+  #bloomoon-logo { font-size: 3rem; margin-top: 1rem; }
+  .tv-image { width: min(320px, 92vw); transform: translateY(-6px); }
+  #signInBtn { padding: 0.4rem 0.9rem; font-size: 0.95rem; }
+  #bloomoon-logo { letter-spacing: 2px; }
 }

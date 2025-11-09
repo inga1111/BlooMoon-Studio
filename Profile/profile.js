@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
  
   setupEventListeners();
   
-  /
+  
   loadUserData();
 });
 

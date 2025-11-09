@@ -62,3 +62,16 @@ header {
   background-color: #ffb6c1;
   transform: scale(1.05);
 }
+
+/* Responsive layout for film details */
+@media (max-width: 768px) {
+  .film-details { flex-direction: column; gap: 18px; padding: 16px; margin: 20px auto; }
+  .poster-section img { width: 60%; max-width: 320px; height: auto; }
+  .info-section { max-width: 100%; padding: 18px; }
+  .buttons { justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .poster-section img { width: 72%; max-width: 260px; }
+  .info-section { padding: 14px; }
+}

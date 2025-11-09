@@ -108,3 +108,21 @@ body {
   background-color: #a7e0e2;
   transform: scale(1.05);
 }
+
+/* Responsive rules for gallery */
+@media (max-width: 992px) {
+  .film-gallery { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; padding: 18px; }
+  .film-card figure { height: 300px; }
+}
+
+@media (max-width: 720px) {
+  .film-gallery { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; padding: 12px; max-width: 100%; }
+  .film-card figure { height: 220px; }
+  .view-btn { padding: 8px 14px; font-size: 0.95rem; }
+}
+
+@media (max-width: 480px) {
+  .film-gallery { grid-template-columns: 1fr; gap: 12px; }
+  .film-card figure { height: 200px; border-radius: 10px; }
+  .watch-overlay { padding: 6px; }
+}

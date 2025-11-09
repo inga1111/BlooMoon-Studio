@@ -486,3 +486,19 @@ body {
     padding: 10px 20px;
   }
 }
+
+@media (max-width: 480px) {
+  .profile-container { padding: 14px 10px; }
+  .profile-pic-container img { width: 120px; height: 120px; }
+  .user-info h2 { font-size: 1.3rem; }
+  .action-btn, .logout-btn { min-width: auto; width: 100%; padding: 10px; font-size: 0.95rem; }
+  #log-review-btn, #add-fav-btn { min-width: auto; width: 100%; }
+  .favorites, .bloomoon-favorite { padding: 1rem; }
+  .film-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 420px; }
+  .film-item { max-width: 120px; }
+}
+
+@media (max-width: 360px) {
+  .film-grid { grid-template-columns: repeat(2, 1fr); max-width: 320px; }
+  .profile-pic-container img { width: 100px; height: 100px; }
+}
