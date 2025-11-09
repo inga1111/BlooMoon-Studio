@@ -24,13 +24,15 @@ body {
 
 .film-gallery {
   display: grid;
-  
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+  /* card width variable keeps all cards the same width; overridden in media queries */
+  --card-width: 240px;
+  grid-template-columns: repeat(auto-fit, minmax(var(--card-width), 1fr));
   gap: 28px;
   padding: 24px;
-  justify-items: center; 
+  justify-items: center;
   align-items: start;
-  margin: 0 auto 0; 
+  margin: 0 auto 0;
   max-width: 1200px;
 }
 
@@ -40,7 +42,9 @@ body {
   transition: transform .35s ease;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
+  width: 100%;
+  max-width: var(--card-width); /* ensure each card caps to the same width */
 }
 
 
@@ -55,12 +59,14 @@ body {
 
 .film-card figure {
   position: relative;
- 
-  height: 340px;
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 10px 26px rgba(47, 179, 227, 0.26);
   margin: 0 auto;
+
+  /* use aspect-ratio so all posters occupy the same visual area */
+  width: 100%;
+  aspect-ratio: 2 / 3; /* consistent poster ratio across cards */
 }
 
 .film-poster {
@@ -111,18 +117,16 @@ body {
 
 /* Responsive rules for gallery */
 @media (max-width: 992px) {
-  .film-gallery { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; padding: 18px; }
-  .film-card figure { height: 300px; }
+  .film-gallery { --card-width: 180px; gap: 20px; padding: 18px; }
 }
 
 @media (max-width: 720px) {
-  .film-gallery { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; padding: 12px; max-width: 100%; }
-  .film-card figure { height: 220px; }
+  .film-gallery { --card-width: 140px; gap: 14px; padding: 12px; max-width: 100%; }
   .view-btn { padding: 8px 14px; font-size: 0.95rem; }
 }
 
 @media (max-width: 480px) {
-  .film-gallery { grid-template-columns: 1fr; gap: 12px; }
-  .film-card figure { height: 200px; border-radius: 10px; }
+  .film-gallery { --card-width: 100%; gap: 12px; grid-template-columns: 1fr; }
+  .film-card figure { border-radius: 10px; }
   .watch-overlay { padding: 6px; }
 }

@@ -5,27 +5,28 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh; 
   flex-direction: column;
+  gap: 0.6rem; 
 }
 
 #bloomoon-logo {
   font-size: 10rem;
   color: #7adbea;
   letter-spacing: 4px;
-  margin-bottom: 1rem;
-  margin-top: 2.8rem;
+  margin-bottom: 0.6rem; 
+  margin-top: 0.6rem; 
   text-align: center;
   font-style: italic;
   text-shadow: 0 8px 20px rgba(137, 224, 239, 0.481);
 }
 
 .tv-image {
-  height: 560px;
-  width: 600px;
-  transform: translateY(-30px);
+  height: 420px; 
+  width: 460px;
+  transform: translateY(-10px); 
   margin-bottom: 0; 
-  margin-top: 0.1rem;
+  margin-top: 0;
 }
 
 #signInBtn {
@@ -37,7 +38,7 @@ body {
   color: white;
   cursor: pointer;
   display: block;
-  margin: 0.2rem auto 1rem; 
+  margin: 0.2rem auto 0.6rem; 
   transition: transform 0.3s ease, background-color 0.3s ease;
   box-shadow: 0 8px 20px rgba(46, 195, 236, 0.522);
 }
@@ -118,7 +119,6 @@ input {
   align-items: center;  
 }
 
-/* Landing page responsive adjustments */
 @media (max-width: 768px) {
   body {
     height: auto;
