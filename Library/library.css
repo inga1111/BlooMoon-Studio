@@ -40,7 +40,7 @@ body {
   max-width: 1200px;
   background: rgba(221, 246, 245, 0.6);
   border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(38, 188, 215, 0.08);
+  box-shadow: 0 10px 30px rgba(38, 188, 215, 0.729);
 }
 
 .popular-section h2 {
@@ -54,7 +54,7 @@ body {
 }
 
 .popular-card {
-  background: #fff;
+  background: #f4f8fb;
   border-radius: 12px;
   overflow: hidden;
   text-align: left;
@@ -95,7 +95,7 @@ body {
   display: flex;
   gap: 14px;
   overflow-x: auto;
-  padding: 6px 36px; /* leave space for arrows */
+  padding: 15px 8px; /* leave space for arrows */
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 }
@@ -156,10 +156,9 @@ body {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  box-shadow: 0 10px 26px rgba(47, 179, 227, 0.26);
+  box-shadow: 0 10px 26px rgba(47, 218, 227, 0.516);
   margin: 0 auto;
 
-  /* use aspect-ratio so all posters occupy the same visual area */
   width: 100%;
   aspect-ratio: 2 / 3; /* consistent poster ratio across cards */
 }

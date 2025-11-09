@@ -5,11 +5,14 @@
 }
 
 nav {
-  background-color: #9dd7d9;
+  background-color: #97d9dc;
   display: flex;
   justify-content: space-between;
   text-align: center;
-  padding: 5px 20px;
+  padding: 10px 20px;
+  /* subtle elevation so nav reads above content */
+  box-shadow: 0 6px 18px rgb(86, 145, 160);
+  z-index: 1000;
 }
 
 nav ul {
@@ -21,7 +24,7 @@ nav ul {
 
 nav a {
   text-decoration: none;
-  color: #333;
+  color: #144c53;
   font-weight: 500;
 }
 
