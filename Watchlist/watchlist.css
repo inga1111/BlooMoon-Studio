@@ -58,6 +58,7 @@
   justify-content: center;
   margin: 25px 0;
   gap: 15px;
+  padding: 0 12px; /* keep search results away from screen edges */
 }
 
 .result-card {
@@ -67,12 +68,34 @@
   width: 180px;
   padding: 15px;
   text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08); /* stronger shadow */
+  transition: transform 0.28s, box-shadow 0.28s;
 }
 
 .result-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+#wl-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #4caf50;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(76, 175, 80, 0.18);
+  transform: translateY(-8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  z-index: 1200;
+}
+
+#wl-notification.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .result-card img {
@@ -107,19 +130,25 @@
 
 .lists-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   gap: 30px;
   margin: 40px 0;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 16px; 
 }
 
 .list {
-  flex: 1;
-  min-width: 300px;
+  flex: 1 1 48%;
+  min-width: 260px;
+  max-width: 560px; 
   background-color: #f7ece3;
   border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 22px;
+  box-shadow: 0 10px 28px rgba(28,146,157,0.06); 
 }
 
 .list h2 {
@@ -130,6 +159,7 @@
 }
 
 .list ul {
+  margin: 0 12px; /* ensure equal spacing around each list */
   list-style: none;
 }
 
@@ -137,16 +167,17 @@
   background-color: #fefaf6;
   border-radius: 15px;
   margin: 10px 0;
-  padding: 15px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 14px;
+  box-shadow: 4px 6px 18px rgba(14, 114, 101, 0.621);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: transform 0.2s;
+  transition: transform 0.22s, box-shadow 0.22s;
 }
 
 .list li:hover {
-  transform: translateX(5px);
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.14);
 }
 
 .movie-info {
@@ -157,10 +188,11 @@
 }
 
 .movie-info img {
-  width: 50px;
-  height: 70px;
+  width: 56px;
+  height: 78px;
   object-fit: cover;
   border-radius: 8px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
 }
 
 .movie-title {
@@ -201,6 +233,7 @@
   
   .list {
     width: 100%;
+    max-width: none;
   }
   
   .search-bar {

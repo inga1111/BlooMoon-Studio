@@ -63,15 +63,39 @@ header {
   transform: scale(1.05);
 }
 
-/* Responsive layout for film details */
+.next-btn {
+  background-color: #ffc0cf; 
+  color: #333;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 20px rgba(242, 72, 126, 0.18);
+}
+
+.next-btn:hover {
+  background-color: #ff9ab8;
+  transform: scale(1.05);
+}
+
+.next-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255,154,184,0.18);
+}
+
 @media (max-width: 768px) {
   .film-details { flex-direction: column; gap: 18px; padding: 16px; margin: 20px auto; }
   .poster-section img { width: 60%; max-width: 320px; height: auto; }
   .info-section { max-width: 100%; padding: 18px; }
   .buttons { justify-content: center; }
+  .next-btn, .watch-btn, .back-btn { padding: 10px 16px; }
 }
 
 @media (max-width: 480px) {
   .poster-section img { width: 72%; max-width: 260px; }
   .info-section { padding: 14px; }
+  .buttons { flex-direction: column; gap: 10px; }
+  .next-btn, .watch-btn, .back-btn { width: 100%; }
 }

@@ -26,6 +26,23 @@
     
     document.body.insertAdjacentHTML('afterbegin', navHTML);
 
+    // insert footer if not present
+    if (!document.querySelector('footer')) {
+      const footerHTML = `
+        <footer class="site-footer">
+          <div class="footer-inner">
+            <small>© ${new Date().getFullYear()} Bloomoon Studio — <a href="${prefix}About/about.html">About</a></small>
+            <nav class="footer-links">
+              <a href="${prefix}Library/library.html">Library</a>
+              <a href="${prefix}Watchlist/watchlist.html">Watchlists</a>
+              <a href="${prefix}Profile/profile.html">Profile</a>
+            </nav>
+          </div>
+        </footer>
+      `;
+      document.body.insertAdjacentHTML('beforeend', footerHTML);
+    }
+
 
     const toggle = document.getElementById('nav-toggle');
     const links = document.querySelector('.site-nav .nav-links');

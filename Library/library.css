@@ -115,7 +115,7 @@ body {
   transform: scale(1.05);
 }
 
-/* Responsive rules for gallery */
+
 @media (max-width: 992px) {
   .film-gallery { --card-width: 180px; gap: 20px; padding: 18px; }
 }

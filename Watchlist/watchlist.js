@@ -29,6 +29,23 @@ const globalList = document.getElementById("globalList");
 let bloomoonWatchlist = JSON.parse(localStorage.getItem("bloomoonWatchlist")) || [];
 let globalWatchlist = JSON.parse(localStorage.getItem("globalWatchlist")) || [];
 
+// Small transient notification helper
+function showNotification(message) {
+  let notif = document.getElementById('wl-notification');
+  if (!notif) {
+    notif = document.createElement('div');
+    notif.id = 'wl-notification';
+    document.body.appendChild(notif);
+  }
+  notif.textContent = message;
+  notif.classList.add('show');
+  // hide after 2.2s
+  clearTimeout(notif._hideTimer);
+  notif._hideTimer = setTimeout(() => {
+    notif.classList.remove('show');
+  }, 2200);
+}
+
 
 function renderLists() {
   
@@ -123,6 +140,9 @@ searchBtn.addEventListener("click", async () => {
                 duration: 0.5,
                 ease: "back.out(1.7)"
               });
+                // notify user and close search results
+                showNotification('Added to Global Watchlist');
+                searchResults.innerHTML = '';
             } else {
               alert("This title is already in your Global Watchlist!");
             }
@@ -175,6 +195,9 @@ searchBtn.addEventListener("click", async () => {
               duration: 0.5,
               ease: "back.out(1.7)"
             });
+            // notify user and close search results
+            showNotification('Added to Bloomoon Watchlist');
+            searchResults.innerHTML = '';
           } else {
             alert("This title is already in your Bloomoon Watchlist!");
           }
