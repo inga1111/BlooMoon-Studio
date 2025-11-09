@@ -76,36 +76,43 @@
    
     const posters = document.querySelectorAll('.film-poster');
 
-    // Build an ordered list of films (dataset + src) so details page can navigate next/prev
+    // Build an ordered list of films (dataset + src + detailPage) so details page can navigate next/prev
     try {
-      const filmList = Array.from(posters).map(p => Object.assign({}, p.dataset, { src: p.src }));
+      const detailPages = ['library-details.html','library-details2.html','library-details3.html','library-details4.html'];
+      const filmList = Array.from(posters).map((p, i) => Object.assign({}, p.dataset, { src: p.src, detailPage: detailPages[i % detailPages.length] }));
       localStorage.setItem('filmList', JSON.stringify(filmList));
+
+      posters.forEach((poster, i) => {
+        poster.addEventListener('click', () => {
+          const data = Object.assign({}, poster.dataset, { src: poster.src, detailPage: detailPages[i % detailPages.length] });
+          localStorage.setItem('selectedFilm', JSON.stringify(data));
+          // navigate to the assigned details page for this film
+          const target = data.detailPage || 'library-details.html';
+          window.location.href = target;
+        });
+      });
     } catch (err) {
       console.warn('Could not build filmList for navigation:', err);
     }
-    posters.forEach(poster => {
-      poster.addEventListener('click', () => {
-        
-        const data = Object.assign({}, poster.dataset, { src: poster.src });
-        localStorage.setItem('selectedFilm', JSON.stringify(data));
-        
-        window.location.href = 'library-details.html';
-      });
-    });
 
    
     const viewBtns = document.querySelectorAll('.view-btn');
-    viewBtns.forEach(btn => {
+    viewBtns.forEach((btn) => {
       btn.addEventListener('click', (e) => {
-        
         const card = btn.closest('.film-card');
         const poster = card ? card.querySelector('.film-poster') : null;
         if (poster) {
-          const data = Object.assign({}, poster.dataset, { src: poster.src });
+          // determine index to pick matching detail page
+          const allPosters = Array.from(document.querySelectorAll('.film-poster'));
+          const idx = allPosters.indexOf(poster);
+          const detailPages = ['library-details.html','library-details2.html','library-details3.html','library-details4.html'];
+          const detailPage = detailPages[idx % detailPages.length] || 'library-details.html';
+          const data = Object.assign({}, poster.dataset, { src: poster.src, detailPage });
           localStorage.setItem('selectedFilm', JSON.stringify(data));
+          window.location.href = detailPage;
+        } else {
+          window.location.href = 'library-details.html';
         }
-        
-        window.location.href = 'library-details.html';
       });
     });
 

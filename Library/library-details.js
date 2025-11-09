@@ -42,16 +42,21 @@ document.addEventListener("DOMContentLoaded", () => {
         const nextFilm = list[nextIndex];
         if (nextFilm) {
           localStorage.setItem('selectedFilm', JSON.stringify(nextFilm));
-          // navigate to the next details page in the sequence (wrap-around)
+          // navigate to the next film's assigned detail page if present
           try {
-            const detailPages = ['library-details.html','library-details2.html','library-details3.html'];
-            const path = window.location.pathname || window.location.href;
-            const currentFile = path.split('/').pop();
-            const pageIdx = detailPages.indexOf(currentFile);
-            const nextPage = detailPages[(pageIdx + 1) % detailPages.length] || detailPages[0];
-            window.location.href = nextPage;
+            const target = nextFilm.detailPage || null;
+            if (target) {
+              window.location.href = target;
+            } else {
+              // fallback: rotate through known detail pages
+              const detailPages = ['library-details.html','library-details2.html','library-details3.html','library-details4.html'];
+              const path = window.location.pathname || window.location.href;
+              const currentFile = path.split('/').pop();
+              const pageIdx = detailPages.indexOf(currentFile);
+              const nextPage = detailPages[(pageIdx + 1) % detailPages.length] || detailPages[0];
+              window.location.href = nextPage;
+            }
           } catch (e) {
-            // fallback: reload current details page
             window.location.reload();
           }
         } else {
