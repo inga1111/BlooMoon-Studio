@@ -92,3 +92,73 @@ p {
   background-color: #ff70a9;
   color: #fff;
 }
+
+/* Contact card styles */
+.contact .contact-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.contact .contact-info {
+  text-align: left;
+  flex: 1 1 50%;
+}
+
+.contact .contact-info p {
+  margin: 0.35rem 0;
+  font-size: 1.05rem;
+}
+
+.contact .contact-info a {
+  color: #066b69;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact .social-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  flex: 0 0 220px;
+}
+
+.contact .follow-text {
+  font-weight: 700;
+  color: #ff64a2;
+}
+
+.social-icons {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  color: #333;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  text-decoration: none;
+  font-size: 1.15rem;
+  transition: transform 0.18s ease, background-color 0.18s ease;
+}
+
+.social-icons a:hover {
+  transform: translateY(-4px);
+  background-color: #ffe6ee;
+}
+
+/* Responsive: stack contact info on small screens */
+@media (max-width: 720px) {
+  .contact .contact-grid { flex-direction: column; align-items: stretch; }
+  .contact .social-links { flex: none; align-items: flex-start; }
+  .social-icons { justify-content: flex-start; }
+}
