@@ -75,6 +75,14 @@
 
    
     const posters = document.querySelectorAll('.film-poster');
+
+    // Build an ordered list of films (dataset + src) so details page can navigate next/prev
+    try {
+      const filmList = Array.from(posters).map(p => Object.assign({}, p.dataset, { src: p.src }));
+      localStorage.setItem('filmList', JSON.stringify(filmList));
+    } catch (err) {
+      console.warn('Could not build filmList for navigation:', err);
+    }
     posters.forEach(poster => {
       poster.addEventListener('click', () => {
         

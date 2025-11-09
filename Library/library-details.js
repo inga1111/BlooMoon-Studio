@@ -21,11 +21,48 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("film-writer").textContent = film.writer;
   document.getElementById("film-director").textContent = film.director;
   document.getElementById("film-description").textContent = film.description;
-  document.getElementById("film-poster").src = film.src || film.poster || "../images/perfect-sorrow.jpg";
+  const posterEl = document.getElementById("film-poster");
+  if (posterEl) posterEl.src = film.src || film.poster || "../images/perfect-sorrow.jpg";
 
 
   const youtubeBtn = document.getElementById("youtube-link");
   if (film.link) youtubeBtn.href = film.link;
+
+  // Next button: advance to the next film in the ordered filmList (wrap-around)
+  const nextBtn = document.getElementById('next-btn');
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      try {
+        const raw = localStorage.getItem('filmList');
+        if (!raw) { window.location.href = 'library.html'; return; }
+        const list = JSON.parse(raw);
+        // find current film by title (dataset stored as title)
+        const idx = list.findIndex(f => (f.title && f.title === film.title));
+        const nextIndex = idx >= 0 ? (idx + 1) % list.length : 0;
+        const nextFilm = list[nextIndex];
+        if (nextFilm) {
+          localStorage.setItem('selectedFilm', JSON.stringify(nextFilm));
+          // navigate to the next details page in the sequence (wrap-around)
+          try {
+            const detailPages = ['library-details.html','library-details2.html','library-details3.html'];
+            const path = window.location.pathname || window.location.href;
+            const currentFile = path.split('/').pop();
+            const pageIdx = detailPages.indexOf(currentFile);
+            const nextPage = detailPages[(pageIdx + 1) % detailPages.length] || detailPages[0];
+            window.location.href = nextPage;
+          } catch (e) {
+            // fallback: reload current details page
+            window.location.reload();
+          }
+        } else {
+          window.location.href = 'library.html';
+        }
+      } catch (err) {
+        console.error('Next navigation failed', err);
+        window.location.href = 'library.html';
+      }
+    });
+  }
 
   
   gsap.from("header", {
