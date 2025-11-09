@@ -24,8 +24,6 @@ body {
 
 .film-gallery {
   display: grid;
-
-  /* card width variable keeps all cards the same width; overridden in media queries */
   --card-width: 240px;
   grid-template-columns: repeat(auto-fit, minmax(var(--card-width), 1fr));
   gap: 28px;
@@ -34,6 +32,103 @@ body {
   align-items: start;
   margin: 0 auto 0;
   max-width: 1200px;
+}
+
+.popular-section {
+  margin: 28px auto;
+  padding: 20px 24px;
+  max-width: 1200px;
+  background: rgba(221, 246, 245, 0.6);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(38, 188, 215, 0.08);
+}
+
+.popular-section h2 {
+  color: #ff64a2;
+  margin: 6px 0 16px;
+  font-size: 1.6rem;
+}
+
+.popular-grid {
+  display: none; 
+}
+
+.popular-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: left;
+  padding: 8px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+  transition: transform 0.28s, box-shadow 0.28s;
+}
+
+.popular-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+.popular-card figure {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  margin: 0 0 8px 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.popular-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.popular-card h3 { font-size: 1rem; margin: 6px 0 2px; color: #333; }
+.popular-card .meta { font-size: 0.85rem; color: #777; margin: 0; }
+
+@media (max-width: 720px) {
+  .popular-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; }
+  .popular-section { padding: 16px; }
+}
+
+/* Carousel-style track */
+.popular-wrap {
+  position: relative;
+}
+
+.popular-track {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 6px 36px; /* leave space for arrows */
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.popular-track::-webkit-scrollbar { height: 8px; }
+.popular-track::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 6px; }
+
+.popular-card { min-width: 140px; flex: 0 0 140px; scroll-snap-align: center; }
+
+.popular-prev, .popular-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.09);
+  cursor: pointer;
+  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popular-prev { left: 6px; }
+.popular-next { right: 6px; }
+
+@media (max-width: 720px) {
+  .popular-card { min-width: 120px; flex: 0 0 120px; }
+  .popular-track { padding: 6px 10px; }
+  .popular-prev, .popular-next { width: 34px; height: 34px; font-size: 18px; }
 }
 
 

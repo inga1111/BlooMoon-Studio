@@ -238,6 +238,31 @@
       });
     });
 
+    // Small carousel controls for the popular track
+    try {
+      const track = document.querySelector('.popular-track');
+      const prev = document.querySelector('.popular-prev');
+      const next = document.querySelector('.popular-next');
+      if (track && prev && next) {
+        const scrollAmount = () => Math.max(200, Math.round(track.clientWidth * 0.6));
+        prev.addEventListener('click', () => track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
+        next.addEventListener('click', () => track.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
+
+        // hide arrows if not scrollable
+        const updateArrows = () => {
+          if (track.scrollWidth <= track.clientWidth + 4) {
+            prev.style.display = 'none'; next.style.display = 'none';
+          } else {
+            prev.style.display = ''; next.style.display = '';
+          }
+        };
+        updateArrows();
+        window.addEventListener('resize', updateArrows);
+      }
+    } catch (err) {
+      console.warn('Popular carousel init failed (non-fatal):', err);
+    }
+
     
   }); 
 })();
