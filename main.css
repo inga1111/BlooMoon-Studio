@@ -37,7 +37,7 @@ body {
   padding: 0;
 }
 
-/* ensure main content isn't hidden behind the fixed footer */
+
 body { padding-bottom: 60px; }
 
 footer {
@@ -76,7 +76,7 @@ footer {
 footer a {
   color: #e98ab2;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 2rem;
 }
 
 
@@ -91,7 +91,7 @@ footer a {
 }
 .site-nav .logo {
   font-size: 1.15rem;
-  color: #333;
+  color: #d70088;
   text-decoration: none;
   font-weight: 600;
 }
@@ -125,7 +125,7 @@ footer a {
   .site-nav .nav-links li { margin: 6px 0; }
 }
 
-/* Responsive helpers for common elements */
+
 @media (max-width: 768px) {
   .site-nav { padding: 8px 12px; }
   .site-nav .logo { font-size: 1rem; }
