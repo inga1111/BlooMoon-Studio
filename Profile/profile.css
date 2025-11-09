@@ -22,7 +22,7 @@ body.loaded {
 :root {
   --primary-color: #a7e0e2;
   --primary-dark: #8fd3d6;
-  --secondary-color: #faa0c4;
+  --secondary-color: #f78bb6;
   --background-color: #fff8ef;
   --card-color: #fdf3e7;
   --text-color: #333;
@@ -45,6 +45,15 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+}
+
+h2{
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  margin-top: 25px;
+  text-align: center; /* center the profile page heading horizontally */
+  width: 100%;
 }
 
 .logo {
@@ -126,7 +135,6 @@ body {
 #log-review-btn {
   margin-top: -30px;
   margin-bottom: 30px;
-  /* smaller, compact sizing */
   padding: 8px 14px;
   min-width: 120px;
   font-size: 0.9rem;
@@ -171,7 +179,6 @@ body {
 
 .film-grid {
   display: grid;
-  /* make favorite posters a bit smaller while remaining responsive */
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 12px;
   margin: 16px auto;
@@ -186,7 +193,6 @@ body {
   transition: var(--transition);
   cursor: pointer;
   aspect-ratio: 2/3;
-  /* limit item width so posters in favorites display smaller */
   max-width: 140px;
 }
 

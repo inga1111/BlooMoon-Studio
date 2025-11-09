@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: #f9f3ddf7;
+  background-color: #faf4dff7;
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   display: flex;
   justify-content: center;
@@ -11,19 +11,19 @@ body {
 }
 
 #bloomoon-logo {
-  font-size: 10rem;
+  font-size: 8rem;
   color: #7adbea;
   letter-spacing: 4px;
-  margin-bottom: 0.6rem; 
-  margin-top: 0.6rem; 
+  margin-bottom: 0.3rem; 
+  margin-top: 0.8rem; 
   text-align: center;
   font-style: italic;
   text-shadow: 0 8px 20px rgba(137, 224, 239, 0.481);
 }
 
 .tv-image {
-  height: 420px; 
-  width: 460px;
+  height: 450px; 
+  width: 410px;
   transform: translateY(-10px); 
   margin-bottom: 0; 
   margin-top: 0;
