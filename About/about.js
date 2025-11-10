@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const flipCards = document.querySelectorAll('.flip-card');
   flipCards.forEach(card => {
     const figure = card.closest('.team-member');
-    // populate back content from data attributes if present
     const ig = figure?.dataset?.instagram || '';
     const qual = figure?.dataset?.qualification || '';
     const back = card.querySelector('.back-content');
@@ -46,12 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
       card.setAttribute('aria-pressed', pressed ? 'true' : 'false');
     }
 
-    // click/tap
+   
     card.addEventListener('click', (e) => {
       toggleFlip(e);
     });
 
-    // keyboard: Enter or Space
+  
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
