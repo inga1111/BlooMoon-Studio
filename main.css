@@ -35,7 +35,10 @@ nav a.active {
 
 body {
   font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #e3fbff 0%, #a7e0e2 45%, #f7d5e0 100%);
   background-color: #e3fbff;
+  background-attachment: fixed;
+  background-size: cover;
   margin: 0;
   padding: 0;
 }

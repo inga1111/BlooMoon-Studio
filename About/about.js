@@ -23,3 +23,40 @@ fetch("../main.js")
     if (typeof loadNavBar === "function") loadNavBar();
     if (typeof loadFooter === "function") loadFooter();
   });
+
+// --- Flip card behavior for team members ---
+document.addEventListener('DOMContentLoaded', () => {
+  const flipCards = document.querySelectorAll('.flip-card');
+  flipCards.forEach(card => {
+    const figure = card.closest('.team-member');
+    // populate back content from data attributes if present
+    const ig = figure?.dataset?.instagram || '';
+    const qual = figure?.dataset?.qualification || '';
+    const back = card.querySelector('.back-content');
+    if (back) {
+      const igEl = back.querySelector('.ig');
+      const qEl = back.querySelector('.qual');
+      if (igEl) igEl.textContent = ig || igEl.textContent;
+      if (qEl) qEl.textContent = (qual ? 'Qualification: ' + qual : qEl.textContent);
+    }
+
+    function toggleFlip(e) {
+      card.classList.toggle('is-flipped');
+      const pressed = card.classList.contains('is-flipped');
+      card.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+    }
+
+    // click/tap
+    card.addEventListener('click', (e) => {
+      toggleFlip(e);
+    });
+
+    // keyboard: Enter or Space
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleFlip(e);
+      }
+    });
+  });
+});

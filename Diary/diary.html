@@ -21,22 +21,23 @@
         </div>
         
         <section class="review-type">
-          <label class="radio-option">
-            <input type="radio" name="reviewType" value="bloomoon" checked>
-            <span class="radio-custom"></span>
-            Bloomoon Animation
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="reviewType" value="global">
-            <span class="radio-custom"></span>
-            Global Animation
-          </label>
+      
+          <div class="review-toggle" role="tablist" aria-label="Review type selector">
+            <button type="button" class="toggle-btn active" data-value="bloomoon" aria-pressed="true">Bloomoon</button>
+            <button type="button" class="toggle-btn" data-value="global" aria-pressed="false">Global film</button>
+          </div>
+
+        
+          <div class="sr-only" aria-hidden="true">
+            <label><input type="radio" name="reviewType" value="bloomoon" checked>Bloomoon</label>
+            <label><input type="radio" name="reviewType" value="global">Global</label>
+          </div>
         </section>
 
         <section id="searchSection" class="hidden">
           <label for="search">Search Animation or Anime:</label>
           <div class="search-container">
-            <input type="text" id="search" placeholder="Search titles like 'Paprika', 'Attack on Titan, etc.">
+            <input type="text" id="search" placeholder="Search titles like 'Paprika', 'Attack on Titan,  etc.">
             <button id="searchBtn" class="search-btn">
               <span class="search-icon">🔍</span>
               Search

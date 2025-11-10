@@ -31,6 +31,36 @@ function setupEventListeners() {
     });
   });
 
+
+  const toggleButtons = document.querySelectorAll('.toggle-btn');
+  if (toggleButtons.length) {
+    toggleButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        toggleButtons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+
+        const value = btn.dataset.value;
+        const radio = document.querySelector(`input[name="reviewType"][value="${value}"]`);
+        if (radio) radio.checked = true;
+
+        searchSection.classList.toggle('hidden', value !== 'global');
+        selectedPoster = null;
+      });
+    });
+
+    
+    const checked = document.querySelector('input[name="reviewType"]:checked');
+    if (checked) {
+      const btn = document.querySelector(`.toggle-btn[data-value="${checked.value}"]`);
+      if (btn) {
+        toggleButtons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
+        btn.classList.add('active'); btn.setAttribute('aria-pressed', 'true');
+        searchSection.classList.toggle('hidden', checked.value !== 'global');
+      }
+    }
+  }
+
   reviewTextarea.addEventListener('input', () => {
     const count = reviewTextarea.value.length;
     charCount.textContent = count;
